@@ -23,5 +23,5 @@ func _move():
 	# Update velocity.
 	_velocity = _input * _speed
 	# Move and collide.
-	move_and_collide(_velocity)
+	move_and_slide(_velocity)
 	return

@@ -6,13 +6,15 @@
 [ext_resource path="res://Actors/PaletteSwap/Negative.shader" type="Shader" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 4, 2 )
+extents = Vector2( 3, 2 )
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 4 )
 shader_param/mod_colour = Color( 0, 0, 0, 0 )
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=[
+"Player",
+]]
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
