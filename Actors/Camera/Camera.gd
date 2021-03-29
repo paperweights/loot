@@ -17,7 +17,7 @@ func _ready():
 	return
 
 func _process(delta: float) -> void:
-	#offset = _get_offset(delta)
+	offset = _get_offset(delta)
 	position = _get_target_pos()
 	return
 
