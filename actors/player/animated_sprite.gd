@@ -1,7 +1,7 @@
 extends AnimatedSprite
 
 
-func _on_Player_moved(velocity: Vector2):
+func _on_Player_moved(velocity: Vector2) -> void:
 	# Flip sprite.
 	if abs(velocity.x) > 0.05:
 		flip_h = velocity.x < 0
@@ -9,6 +9,6 @@ func _on_Player_moved(velocity: Vector2):
 	return
 
 
-func _on_Player_idled():
+func _on_Player_idled() -> void:
 	animation = "idle"
 	return
