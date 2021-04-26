@@ -12,7 +12,11 @@ func _physics_process(delta: float) -> void:
 	if input != Vector2():
 		var velocity = input * speed
 		velocity = move_and_slide(velocity)
-		emit_signal("moved", velocity)
+		# Update animation based on velocity.
+		if velocity == Vector2():
+			emit_signal("idled")
+		else:
+			emit_signal("moved", velocity)
 	else:
 		emit_signal("idled")
 	return
