@@ -78,6 +78,10 @@ ui_down={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_2="tops"
+
 [physics]
 
 common/enable_pause_aware_picking=true
