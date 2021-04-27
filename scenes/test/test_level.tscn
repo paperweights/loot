@@ -14,7 +14,7 @@ shader_param/subtract_color = Color( 0.25098, 1, 0, 0 )
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 4 )
-shader_param/subtract_color = Color( 0.501961, 0.25098, 0, 0 )
+shader_param/subtract_color = Color( 0.25098, 0, 0, 0 )
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 4 )
