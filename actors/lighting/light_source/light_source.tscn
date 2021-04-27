@@ -18,3 +18,9 @@ script = ExtResource( 2 )
 
 [node name="ShadeMasks" type="Node2D" parent="."]
 script = ExtResource( 4 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
