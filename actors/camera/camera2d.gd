@@ -3,6 +3,7 @@ extends Camera2D
 const ROOM_SIZE = Vector2(128, 128)
 const HALF_ROOM = ROOM_SIZE / 2
 
+export var _lerp_speed = 0.05
 export (NodePath) var _target_node = ""
 var _min_room = Vector2()
 var _max_room = Vector2()
@@ -21,7 +22,10 @@ func _ready() -> void:
 
 
 func _process(delta) -> void:
-	position = _get_target_position()
+	var target_pos = _get_target_position()
+	target_pos.x = lerp(position.x, target_pos.x, _lerp_speed)
+	target_pos.y = lerp(position.y, target_pos.y, _lerp_speed)
+	position = target_pos
 	return
 
 
