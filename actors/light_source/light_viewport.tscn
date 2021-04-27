@@ -4,6 +4,8 @@
 
 [node name="LightViewport" type="ViewportContainer"]
 material = ExtResource( 1 )
+margin_left = -128.0
+margin_top = -128.0
 margin_right = 128.0
 margin_bottom = 128.0
 __meta__ = {
@@ -13,7 +15,7 @@ __meta__ = {
 [node name="Viewport" type="Viewport" parent="." groups=[
 "light_viewport",
 ]]
-size = Vector2( 128, 128 )
+size = Vector2( 256, 256 )
 transparent_bg = true
 handle_input_locally = false
 render_target_update_mode = 3

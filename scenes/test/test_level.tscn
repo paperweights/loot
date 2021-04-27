@@ -40,6 +40,7 @@ position = Vector2( 64, 64 )
 [node name="LightSource" parent="Player" instance=ExtResource( 3 )]
 
 [node name="Camera2D" parent="." instance=ExtResource( 5 )]
+_shake_intensity = 8
 _target_node = NodePath("../Player")
 
 [node name="CameraTrigger" parent="." instance=ExtResource( 6 )]

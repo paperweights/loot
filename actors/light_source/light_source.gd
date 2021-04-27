@@ -1,6 +1,6 @@
 extends Node2D
 
-const HALF_ROOM = preload("res://actors/camera/camera2d.gd").HALF_ROOM
+const MESH_OFFSET = Vector2(128, 128)
 
 export (int) var _length = 40
 
@@ -27,7 +27,7 @@ func _update_mesh() -> void:
 	# Generate a mesh for the sprite.
 	var array_mesh = _get_array_mesh(points)
 	_mesh_instance.mesh = array_mesh
-	_mesh_instance.position = global_position - _camera.global_position + HALF_ROOM
+	_mesh_instance.position = global_position - _camera.global_position + MESH_OFFSET
 	return
 
 
