@@ -1,24 +1,16 @@
 extends KinematicBody2D
 
-signal moved(velocity)
-signal idled
+export var _speed = 50
 
-export var speed = 50
+onready var _sprite = $AnimatedSprite
 
 
 func _physics_process(delta: float) -> void:
 	var input = _get_input()
 	# Only move on input.
-	if input != Vector2():
-		var velocity = input * speed
-		velocity = move_and_slide(velocity)
-		# Update animation based on velocity.
-		if velocity == Vector2():
-			emit_signal("idled")
-		else:
-			emit_signal("moved", velocity)
-	else:
-		emit_signal("idled")
+	var velocity = input * _speed
+	velocity = move_and_slide(velocity)
+	_sprite.animate(velocity)
 	return
 
 

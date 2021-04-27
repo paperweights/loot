@@ -13,14 +13,10 @@ script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
-animation = "idle"
-frame = 3
+animation = "run"
 playing = true
 script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 3 )
 shape = SubResource( 1 )
-
-[connection signal="idled" from="." to="AnimatedSprite" method="_on_Player_idled"]
-[connection signal="moved" from="." to="AnimatedSprite" method="_on_Player_moved"]

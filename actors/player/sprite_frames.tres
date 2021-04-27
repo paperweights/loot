@@ -18,5 +18,5 @@ animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 1 ) ],
 "loop": true,
 "name": "run",
-"speed": 5.0
+"speed": 8.0
 } ]
