@@ -20,9 +20,8 @@ render_target_update_mode = 3
 
 [node name="Level" parent="Viewport" instance=ExtResource( 1 )]
 
-[node name="LightViewport" parent="Viewport" instance=ExtResource( 4 )]
-visible = false
-
 [node name="HUD" type="CanvasLayer" parent="Viewport"]
+
+[node name="LightViewport" parent="Viewport/HUD" instance=ExtResource( 4 )]
 
 [node name="FPS" parent="Viewport/HUD" instance=ExtResource( 3 )]

@@ -18,12 +18,12 @@ func _get_cast_points() -> PoolVector2Array:
 
 
 func cast_points(length: float) -> PoolVector2Array:
-	# Get ray intersections in global space.
+	# Get ray intersections in local space.
 	var results = PoolVector2Array()
 	for i in range(RAY_COUNT):
 		var target_point = cast_points[i] * length
 		cast_to = target_point
 		force_raycast_update()
-		var new_point = get_collision_point() if is_colliding() else target_point + global_position
+		var new_point = get_collision_point() - global_position if is_colliding() else target_point
 		results.push_back(new_point)
 	return results

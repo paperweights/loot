@@ -47,5 +47,3 @@ _target_node = NodePath("../Player")
 [node name="CameraTrigger2" parent="." instance=ExtResource( 6 )]
 _min_room = Vector2( 1, 0 )
 _max_room = Vector2( 1, 1 )
-
-[connection signal="moved" from="Player" to="Player/LightSource" method="_on_Player_moved"]

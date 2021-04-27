@@ -1,15 +1,22 @@
 extends Node2D
 
+const HALF_ROOM = preload("res://actors/camera/camera2d.gd").HALF_ROOM
+
 export (int) var _length = 40
 
 var _mesh_instance = MeshInstance2D.new()
 
 onready var _ray = $RayCast2D
+onready var _camera: Camera2D = get_tree().get_nodes_in_group("camera")[0]
 
 
 func _ready():
 	var light_viewport : Node = get_tree().get_nodes_in_group("light_viewport")[0]
 	light_viewport.add_child(_mesh_instance)
+	return
+
+
+func _process(delta) -> void:
 	_update_mesh()
 	return
 
@@ -20,13 +27,14 @@ func _update_mesh() -> void:
 	# Generate a mesh for the sprite.
 	var array_mesh = _get_array_mesh(points)
 	_mesh_instance.mesh = array_mesh
+	_mesh_instance.position = global_position - _camera.global_position + HALF_ROOM
 	return
 
 
 func _get_array_mesh(points: PoolVector2Array) -> ArrayMesh:
 	# Create vertices.
 	var vertices = PoolVector3Array()
-	vertices.push_back(_to_vector3(global_position))
+	vertices.push_back(_to_vector3(position))
 	for i in range(len(points)):
 		vertices.push_back(_to_vector3(points[i]))
 	# Create indices.
@@ -49,8 +57,3 @@ func _get_array_mesh(points: PoolVector2Array) -> ArrayMesh:
 
 func _to_vector3(vector: Vector2) -> Vector3:
 	return Vector3(vector.x, vector.y, 0)
-
-
-func _on_Player_moved(velocity: Vector2) -> void:
-	_update_mesh()
-	return

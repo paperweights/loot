@@ -15,6 +15,11 @@ func _init() -> void:
 	return
 
 
+func _ready() -> void:
+	position = _get_target_position()
+	return
+
+
 func _process(delta) -> void:
 	position = _get_target_position()
 	return
