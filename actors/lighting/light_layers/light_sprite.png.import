@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/light_circle.png-7e4a6ce8d08793bd4385667ab9093b58.stex"
+path="res://.import/light_sprite.png-3131c533f948103e6dede069285f5eb7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://actors/light/light_layers/light_circle.png"
-dest_files=[ "res://.import/light_circle.png-7e4a6ce8d08793bd4385667ab9093b58.stex" ]
+source_file="res://actors/lighting/light_layers/light_sprite.png"
+dest_files=[ "res://.import/light_sprite.png-3131c533f948103e6dede069285f5eb7.stex" ]
 
 [params]
 
