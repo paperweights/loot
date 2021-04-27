@@ -1,6 +1,11 @@
 extends AnimatedSprite
 
 
+func _init() -> void:
+	playing = true
+	return
+
+
 func animate(velocity: Vector2) -> void:
 	# Flip sprite.
 	if abs(velocity.x) > 0.05:
