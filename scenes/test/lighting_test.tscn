@@ -2,9 +2,9 @@
 
 [ext_resource path="res://prefabs/tilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://actors/player/player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://actors/light_source/light_source.tscn" type="PackedScene" id=3]
+[ext_resource path="res://actors/light/light_source/light_source.tscn" type="PackedScene" id=3]
 [ext_resource path="res://materials/shaders/subtract.shader" type="Shader" id=4]
-[ext_resource path="res://actors/light_source/light_viewport.tscn" type="PackedScene" id=5]
+[ext_resource path="res://actors/light/light_viewport.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
@@ -39,5 +39,3 @@ position = Vector2( 64, 64 )
 [node name="LightSource" parent="Player" instance=ExtResource( 3 )]
 
 [node name="ViewportContainer" parent="." instance=ExtResource( 5 )]
-
-[connection signal="moved" from="Player" to="Player/LightSource" method="_on_Player_moved"]

@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://actors/camera/camera2d.gd" type="Script" id=1]
-[ext_resource path="res://materials/light_subtract.tres" type="Material" id=2]
-[ext_resource path="res://actors/light_source/light_viewport.tscn" type="PackedScene" id=3]
-[ext_resource path="res://actors/light_source/light_sprite.png" type="Texture" id=4]
+[ext_resource path="res://actors/light/light_layers/light_layers.tscn" type="PackedScene" id=2]
 
 [node name="Camera2D" type="Camera2D" groups=[
 "camera",
@@ -13,13 +11,7 @@ script = ExtResource( 1 )
 _shake_intensity = 6
 _offset_speed = 0.1
 
-[node name="Darkness1" type="Sprite" parent="."]
-light_mask = 2
-material = ExtResource( 2 )
-scale = Vector2( 16, 16 )
-texture = ExtResource( 4 )
-
-[node name="LightViewport" parent="." instance=ExtResource( 3 )]
+[node name="LightLayers" parent="." instance=ExtResource( 2 )]
 
 [node name="ShakeInterval" type="Timer" parent="."]
 wait_time = 0.1
