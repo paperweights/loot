@@ -1,17 +1,31 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://materials/light_subtract.tres" type="Material" id=1]
+[ext_resource path="res://actors/light/light_layers/darkness0.tres" type="Material" id=1]
 [ext_resource path="res://actors/light/light_viewport.tscn" type="PackedScene" id=2]
 [ext_resource path="res://actors/light/light_layers/light_layers.gd" type="Script" id=3]
 [ext_resource path="res://actors/light/light_layers/light_sprite.png" type="Texture" id=4]
+[ext_resource path="res://actors/light/light_layers/darkness2.tres" type="Material" id=5]
+[ext_resource path="res://actors/light/light_layers/darkness1.tres" type="Material" id=6]
 
 [node name="LightLayers" type="Node2D"]
 visible = false
 script = ExtResource( 3 )
 
-[node name="Darkness1" type="Sprite" parent="."]
-light_mask = 2
+[node name="Darkness0" type="Sprite" parent="."]
+light_mask = 1024
 material = ExtResource( 1 )
+scale = Vector2( 16, 16 )
+texture = ExtResource( 4 )
+
+[node name="Darkness1" type="Sprite" parent="."]
+light_mask = 2048
+material = ExtResource( 6 )
+scale = Vector2( 16, 16 )
+texture = ExtResource( 4 )
+
+[node name="Darkness2" type="Sprite" parent="."]
+light_mask = 4096
+material = ExtResource( 5 )
 scale = Vector2( 16, 16 )
 texture = ExtResource( 4 )
 

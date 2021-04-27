@@ -2,22 +2,34 @@ extends Node2D
 
 const MESH_OFFSET = Vector2(128, 128)
 
-export (int) var _length = 40
+export var _length = 32
+export var _light_step = 3
 
 var _mesh_instance = MeshInstance2D.new()
 
 onready var _ray = $RayCast2D
 onready var _camera: Camera2D = get_tree().get_nodes_in_group("camera")[0]
+onready var _lights = [$Light0, $Light1, $Light2]
 
 
 func _ready():
 	var light_viewport : Node = get_tree().get_nodes_in_group("light_viewport")[0]
 	light_viewport.add_child(_mesh_instance)
+	_update_lights()
 	return
 
 
 func _process(delta) -> void:
 	_update_mesh()
+	return
+
+
+func _update_lights() -> void:
+	var count = len(_lights)
+	for i in range(count):
+		var s = (_length - ((count - i) * _light_step)) / 64.0
+		print(s)
+		_lights[i].scale = Vector2(s, s)
 	return
 
 
