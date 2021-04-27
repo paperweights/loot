@@ -1,6 +1,8 @@
 extends Area2D
 
-const ROOM_SIZE = preload("res://actors/camera/camera2d.gd").ROOM_SIZE
+const CAMERA_2D = preload("res://actors/camera/camera2d.gd")
+const ROOM_SIZE = CAMERA_2D.ROOM_SIZE
+const HALF_ROOM = CAMERA_2D.HALF_ROOM
 
 export (Vector2) var _min_room
 export (Vector2) var _max_room
@@ -14,11 +16,13 @@ func _ready() -> void:
 
 
 func _update_collision_shape() -> void:
-	var target_pos = _max_room - _min_room + Vector2(1, 1) * Vector2(64, 64)
+	# half of the room size in pixels.
+	var room_size = (_max_room - _min_room + Vector2(1, 1)) * HALF_ROOM
+	# Apply pos and extents
 	var shape = RectangleShape2D.new()
-	shape.extents = target_pos - Vector2(8, 8)
+	shape.extents = room_size - Vector2(8, 8)
 	_collision_shape.shape = shape
-	_collision_shape.position = target_pos
+	_collision_shape.position = _min_room * ROOM_SIZE + room_size
 	return
 
 
