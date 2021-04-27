@@ -2,7 +2,7 @@
 
 [ext_resource path="res://materials/invert.tres" type="Material" id=1]
 
-[node name="ViewportContainer" type="ViewportContainer"]
+[node name="LightViewport" type="ViewportContainer"]
 material = ExtResource( 1 )
 margin_right = 128.0
 margin_bottom = 128.0
