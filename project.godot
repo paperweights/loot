@@ -80,7 +80,8 @@ ui_down={
 
 [layer_names]
 
-2d_physics/layer_2="tops"
+2d_physics/layer_2="player"
+2d_physics/layer_6="tops"
 
 [physics]
 
