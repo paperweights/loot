@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "ZIndexer",
+"language": "GDScript",
+"path": "res://actors/z_indexer.gd"
+} ]
+_global_script_class_icons={
+"ZIndexer": ""
+}
+
 [application]
 
 config/name="loot"
