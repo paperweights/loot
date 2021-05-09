@@ -24,3 +24,8 @@ func update_masks(length: float) -> void:
 		_masks[i].scale = Vector2(s, s)
 		_masks[i].position = global_position - _camera.global_position + Vector2(128, 128)
 	return
+
+
+func _on_LightSource_updated(length):
+	update_masks(length)
+	return

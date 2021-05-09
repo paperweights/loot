@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://prefabs/tilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://actors/player/player.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://actors/camera_trigger/camera_trigger.tscn" type="PackedScene" id=6]
 [ext_resource path="res://lighting_test.png" type="Texture" id=7]
 [ext_resource path="res://actors/pickup/coin/coin.tscn" type="PackedScene" id=8]
+[ext_resource path="res://actors/lighting/light_mesh/light_mesh.tscn" type="PackedScene" id=9]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
@@ -48,6 +49,9 @@ position = Vector2( 103, 67 )
 position = Vector2( 64, 64 )
 
 [node name="LightSource" parent="Player" instance=ExtResource( 3 )]
+_target_length = 32
+
+[node name="LightMesh" parent="Player" instance=ExtResource( 9 )]
 
 [node name="Camera2D" parent="." instance=ExtResource( 5 )]
 _shake_intensity = 8
@@ -62,3 +66,5 @@ _max_room = Vector2( -1, 0 )
 
 [node name="LightSource" parent="." instance=ExtResource( 3 )]
 position = Vector2( 133.282, 129.919 )
+
+[connection signal="updated" from="Player/LightSource" to="Player/LightMesh" method="_on_LightSource_updated"]

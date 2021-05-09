@@ -49,3 +49,8 @@ func _get_array_mesh(points: PoolVector2Array) -> ArrayMesh:
 
 func _to_vector3(vector: Vector2) -> Vector3:
 	return Vector3(vector.x, vector.y, 0)
+
+
+func _on_LightSource_updated(length) -> void:
+	update_mesh(length)
+	return
