@@ -9,12 +9,24 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Resource",
+"class": "Inventory",
+"language": "GDScript",
+"path": "res://items/inventory.gd"
+}, {
+"base": "Resource",
+"class": "Item",
+"language": "GDScript",
+"path": "res://items/item.gd"
+}, {
 "base": "Node2D",
 "class": "ZIndexer",
 "language": "GDScript",
 "path": "res://actors/z_indexer.gd"
 } ]
 _global_script_class_icons={
+"Inventory": "",
+"Item": "",
 "ZIndexer": ""
 }
 
