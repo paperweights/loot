@@ -22,6 +22,6 @@ render_target_update_mode = 3
 
 [node name="HUD" type="CanvasLayer" parent="Viewport"]
 
-[node name="FPS" parent="Viewport/HUD" instance=ExtResource( 3 )]
-
 [node name="Inventory" parent="Viewport/HUD" instance=ExtResource( 4 )]
+
+[node name="FPS" parent="Viewport/HUD" instance=ExtResource( 3 )]
