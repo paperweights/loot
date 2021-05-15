@@ -10,7 +10,7 @@ func _physics_process(delta: float) -> void:
 	# Only move on input.
 	var velocity = input * _speed
 	velocity = move_and_slide(velocity)
-	_sprite.animate(velocity)
+	get_tree().call_group("player_sprite", "animate", velocity)
 	return
 
 
