@@ -60,10 +60,3 @@ _max_room = Vector2( 2, 2 )
 [node name="CameraTrigger2" parent="." instance=ExtResource( 6 )]
 _min_room = Vector2( -1, 0 )
 _max_room = Vector2( -1, 0 )
-
-[node name="LightSource" parent="." instance=ExtResource( 3 )]
-position = Vector2( 133.282, 129.919 )
-
-[node name="golden_longsword" type="Sprite" parent="."]
-position = Vector2( 64, 111 )
-texture = ExtResource( 9 )

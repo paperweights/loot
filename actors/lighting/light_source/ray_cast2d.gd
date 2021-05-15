@@ -24,6 +24,11 @@ func cast_points(length: float) -> PoolVector2Array:
 		var target_point = cast_points[i] * length
 		cast_to = target_point
 		force_raycast_update()
-		var new_point = get_collision_point() - global_position if is_colliding() else target_point
+		# Calculate the new point.
+		var new_point = Vector2()
+		if is_colliding():
+			new_point = get_collision_point() - global_position - get_collision_normal() * 3
+		else:
+			new_point = target_point
 		results.push_back(new_point)
 	return results
