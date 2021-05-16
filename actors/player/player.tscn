@@ -3,8 +3,8 @@
 [ext_resource path="res://actors/player/sprite_frames.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://actors/player/player.gd" type="Script" id=2]
 [ext_resource path="res://actors/player/animated_sprite.gd" type="Script" id=3]
-[ext_resource path="res://actors/z_indexer.gd" type="Script" id=4]
-[ext_resource path="res://scripts/health.gd" type="Script" id=5]
+[ext_resource path="res://nodes/z_indexer.gd" type="Script" id=4]
+[ext_resource path="res://nodes/health.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3, 2 )

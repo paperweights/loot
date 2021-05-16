@@ -2,7 +2,7 @@
 
 [ext_resource path="res://actors/pickup/coin/coin.png" type="Texture" id=1]
 [ext_resource path="res://actors/pickup/coin/coin.gd" type="Script" id=2]
-[ext_resource path="res://actors/z_indexer.gd" type="Script" id=3]
+[ext_resource path="res://nodes/z_indexer.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 2, 1 )
