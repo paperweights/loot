@@ -25,3 +25,4 @@ render_target_update_mode = 3
 [node name="FPS" parent="Viewport/HUD" instance=ExtResource( 3 )]
 
 [node name="Menu" parent="Viewport/HUD" instance=ExtResource( 4 )]
+visible = false
