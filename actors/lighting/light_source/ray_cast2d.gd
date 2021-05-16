@@ -27,7 +27,7 @@ func cast_points(length: float) -> PoolVector2Array:
 		# Calculate the new point.
 		var new_point = Vector2()
 		if is_colliding():
-			new_point = get_collision_point() - global_position - get_collision_normal() * 3
+			new_point = get_collision_point() - global_position
 		else:
 			new_point = target_point
 		results.push_back(new_point)
