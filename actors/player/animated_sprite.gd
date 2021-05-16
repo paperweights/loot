@@ -1,6 +1,5 @@
 extends AnimatedSprite
 
-
 func _init() -> void:
 	playing = true
 	return

@@ -1,0 +1,276 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ui/theme.tres" type="Theme" id=2]
+[ext_resource path="res://ui/hud.gd" type="Script" id=3]
+[ext_resource path="res://items/ui/slot.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ui/info_panel.tscn" type="PackedScene" id=5]
+
+[node name="Menu" type="TabContainer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -60.0
+margin_top = -56.0
+margin_right = 60.0
+margin_bottom = 56.0
+theme = ExtResource( 2 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="equip" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 11.0
+margin_right = -2.0
+margin_bottom = -2.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="equip"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = -4.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InfoPanel" parent="equip/HBoxContainer" instance=ExtResource( 5 )]
+size_flags_horizontal = 2
+
+[node name="Slots" type="GridContainer" parent="equip/HBoxContainer"]
+margin_left = 56.0
+margin_top = 22.0
+margin_right = 108.0
+margin_bottom = 68.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_constants/vseparation = -1
+custom_constants/hseparation = -1
+columns = 3
+
+[node name="CenterContainer" parent="equip/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_right = 16.0
+margin_bottom = 16.0
+
+[node name="CenterContainer2" parent="equip/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_left = 15.0
+margin_right = 31.0
+margin_bottom = 16.0
+
+[node name="CenterContainer3" parent="equip/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_left = 30.0
+margin_right = 46.0
+margin_bottom = 16.0
+
+[node name="CenterContainer4" parent="equip/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_top = 15.0
+margin_right = 16.0
+margin_bottom = 31.0
+
+[node name="CenterContainer5" parent="equip/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 31.0
+margin_bottom = 31.0
+
+[node name="CenterContainer6" parent="equip/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_left = 30.0
+margin_top = 15.0
+margin_right = 46.0
+margin_bottom = 31.0
+
+[node name="CenterContainer7" parent="equip/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_top = 30.0
+margin_right = 16.0
+margin_bottom = 46.0
+
+[node name="CenterContainer8" parent="equip/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_left = 15.0
+margin_top = 30.0
+margin_right = 31.0
+margin_bottom = 46.0
+
+[node name="CenterContainer9" parent="equip/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_left = 30.0
+margin_top = 30.0
+margin_right = 46.0
+margin_bottom = 46.0
+
+[node name="bag" type="Panel" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 11.0
+margin_right = -2.0
+margin_bottom = -2.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="bag"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = -4.0
+custom_constants/separation = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InfoPanel" parent="bag/HBoxContainer" instance=ExtResource( 5 )]
+
+[node name="Slots" type="GridContainer" parent="bag/HBoxContainer"]
+margin_left = 47.0
+margin_right = 108.0
+margin_bottom = 91.0
+custom_constants/vseparation = -1
+custom_constants/hseparation = -1
+columns = 4
+
+[node name="CenterContainer" parent="bag/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_right = 16.0
+margin_bottom = 16.0
+
+[node name="CenterContainer2" parent="bag/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_left = 15.0
+margin_right = 31.0
+margin_bottom = 16.0
+
+[node name="CenterContainer3" parent="bag/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_left = 30.0
+margin_right = 46.0
+margin_bottom = 16.0
+
+[node name="CenterContainer4" parent="bag/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_left = 45.0
+margin_right = 61.0
+margin_bottom = 16.0
+
+[node name="CenterContainer5" parent="bag/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_top = 15.0
+margin_right = 16.0
+margin_bottom = 31.0
+
+[node name="CenterContainer6" parent="bag/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 31.0
+margin_bottom = 31.0
+
+[node name="CenterContainer7" parent="bag/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_left = 30.0
+margin_top = 15.0
+margin_right = 46.0
+margin_bottom = 31.0
+
+[node name="CenterContainer8" parent="bag/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_left = 45.0
+margin_top = 15.0
+margin_right = 61.0
+margin_bottom = 31.0
+
+[node name="CenterContainer9" parent="bag/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_top = 30.0
+margin_right = 16.0
+margin_bottom = 46.0
+
+[node name="CenterContainer10" parent="bag/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_left = 15.0
+margin_top = 30.0
+margin_right = 31.0
+margin_bottom = 46.0
+
+[node name="CenterContainer11" parent="bag/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_left = 30.0
+margin_top = 30.0
+margin_right = 46.0
+margin_bottom = 46.0
+
+[node name="CenterContainer12" parent="bag/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_left = 45.0
+margin_top = 30.0
+margin_right = 61.0
+margin_bottom = 46.0
+
+[node name="CenterContainer13" parent="bag/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_top = 45.0
+margin_right = 16.0
+margin_bottom = 61.0
+
+[node name="CenterContainer14" parent="bag/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_left = 15.0
+margin_top = 45.0
+margin_right = 31.0
+margin_bottom = 61.0
+
+[node name="CenterContainer15" parent="bag/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_left = 30.0
+margin_top = 45.0
+margin_right = 46.0
+margin_bottom = 61.0
+
+[node name="CenterContainer16" parent="bag/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_left = 45.0
+margin_top = 45.0
+margin_right = 61.0
+margin_bottom = 61.0
+
+[node name="CenterContainer17" parent="bag/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_top = 60.0
+margin_right = 16.0
+margin_bottom = 76.0
+
+[node name="CenterContainer18" parent="bag/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_left = 15.0
+margin_top = 60.0
+margin_right = 31.0
+margin_bottom = 76.0
+
+[node name="CenterContainer19" parent="bag/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_left = 30.0
+margin_top = 60.0
+margin_right = 46.0
+margin_bottom = 76.0
+
+[node name="CenterContainer20" parent="bag/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_left = 45.0
+margin_top = 60.0
+margin_right = 61.0
+margin_bottom = 76.0
+
+[node name="CenterContainer21" parent="bag/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_top = 75.0
+margin_right = 16.0
+margin_bottom = 91.0
+
+[node name="CenterContainer22" parent="bag/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_left = 15.0
+margin_top = 75.0
+margin_right = 31.0
+margin_bottom = 91.0
+
+[node name="CenterContainer23" parent="bag/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_left = 30.0
+margin_top = 75.0
+margin_right = 46.0
+margin_bottom = 91.0
+
+[node name="CenterContainer24" parent="bag/HBoxContainer/Slots" instance=ExtResource( 4 )]
+margin_left = 45.0
+margin_top = 75.0
+margin_right = 61.0
+margin_bottom = 91.0
+
+[node name="map" type="Panel" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 11.0
+margin_right = -2.0
+margin_bottom = -2.0

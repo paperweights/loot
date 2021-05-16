@@ -8,7 +8,7 @@
 points = PoolVector2Array( 5, 5, 3, 5, 3, 3, 5, 3 )
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
-points = PoolVector2Array( 8, 8, 0, 8, 0, 0, 8, 0 )
+points = PoolVector2Array( 8, 8, 3, 3, 3, 0, 8, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 3, 8, 3, 8, 3, 3, 5, 3, 5, 8 )
