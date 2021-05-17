@@ -7,10 +7,11 @@
 [ext_resource path="res://items/ui/frame_selected.png" type="Texture" id=5]
 
 [sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
 shader = ExtResource( 4 )
-shader_param/subtract_color = Color( 0, 0.815686, 0, 0 )
+shader_param/subtract_color = Color( 0, 1, 0, 0 )
 
-[node name="CenterContainer" type="CenterContainer"]
+[node name="Slot" type="CenterContainer"]
 margin_right = 14.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 16, 16 )

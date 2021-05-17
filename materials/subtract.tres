@@ -3,5 +3,6 @@
 [ext_resource path="res://materials/shaders/subtract.shader" type="Shader" id=1]
 
 [resource]
+resource_local_to_scene = true
 shader = ExtResource( 1 )
 shader_param/subtract_color = Color( 0, 0, 0, 0 )

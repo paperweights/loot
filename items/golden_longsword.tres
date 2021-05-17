@@ -7,5 +7,5 @@
 script = ExtResource( 1 )
 _name = "Golden Longsword"
 _value = 100
-_rarity = 0
+_rarity = 2
 _sprite = ExtResource( 2 )

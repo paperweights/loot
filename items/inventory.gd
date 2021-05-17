@@ -6,6 +6,14 @@ signal items_changed(indexes)
 export(Array, Resource) var _items
 
 
+func get_size() -> int:
+	return _items.size()
+
+
+func get_items() -> Array:
+	return _items
+
+
 func _set_item(item_index: int, item: Resource) -> Resource:
 	var old_item = _items[item_index]
 	_items[item_index] = item
