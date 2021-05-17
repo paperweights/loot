@@ -44,5 +44,5 @@ func _update_hearts(health: int) -> void:
 
 
 func _on_PlayerHealth_health_changed(new_health: int) -> void:
-	_init_hearts()
+	_update_hearts(new_health)
 	return
