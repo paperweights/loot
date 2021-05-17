@@ -1,15 +1,16 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://actors/player/animated_sprite.tscn" type="PackedScene" id=1]
 [ext_resource path="res://actors/player/player.gd" type="Script" id=2]
-[ext_resource path="res://actors/player/animated_sprite.gd" type="Script" id=3]
 [ext_resource path="res://nodes/z_indexer.gd" type="Script" id=4]
 [ext_resource path="res://nodes/health.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3, 2 )
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=[
+"player",
+]]
 collision_layer = 3
 script = ExtResource( 2 )
 
@@ -23,5 +24,8 @@ shape = SubResource( 1 )
 script = ExtResource( 4 )
 _target_node = NodePath("..")
 
-[node name="Health" type="Node" parent="."]
+[node name="Health" type="Node" parent="." groups=[
+"player_health",
+]]
 script = ExtResource( 5 )
+_max_health = 9

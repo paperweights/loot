@@ -19,6 +19,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://nodes/health.gd"
 }, {
+"base": "GridContainer",
+"class": "HeartDisplay",
+"language": "GDScript",
+"path": "res://nodes/heart_display.gd"
+}, {
 "base": "Resource",
 "class": "Inventory",
 "language": "GDScript",
@@ -29,7 +34,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://items/item.gd"
 }, {
-"base": "Node2D",
+"base": "Reference",
 "class": "ZIndexer",
 "language": "GDScript",
 "path": "res://nodes/z_indexer.gd"
@@ -37,6 +42,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "FPS": "",
 "Health": "",
+"HeartDisplay": "",
 "Inventory": "",
 "Item": "",
 "ZIndexer": ""

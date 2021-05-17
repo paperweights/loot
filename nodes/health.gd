@@ -5,7 +5,15 @@ signal died
 
 export(int) var _max_health = 8
 
-var _health = _max_health
+onready var _health = _max_health
+
+
+func get_max_health() -> int:
+	return _max_health
+
+
+func get_health() -> int:
+	return _health
 
 
 func heal(amount: int) -> void:
