@@ -3,7 +3,7 @@
 [ext_resource path="res://items/ui/bag_grid_display.gd" type="Script" id=1]
 [ext_resource path="res://ui/theme.tres" type="Theme" id=2]
 [ext_resource path="res://ui/hud.gd" type="Script" id=3]
-[ext_resource path="res://items/ui/slot.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ui/slot/slot.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ui/info_panel.tscn" type="PackedScene" id=5]
 
 [node name="Menu" type="TabContainer"]

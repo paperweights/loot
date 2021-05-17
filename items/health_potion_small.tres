@@ -7,5 +7,5 @@
 script = ExtResource( 1 )
 _name = "Small Health Potion"
 _value = 20
-_rarity = 0
+_rarity = 5
 _sprite = ExtResource( 2 )
