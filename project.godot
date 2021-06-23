@@ -34,7 +34,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://items/item.gd"
 }, {
-"base": "Reference",
+"base": "Node2D",
 "class": "ZIndexer",
 "language": "GDScript",
 "path": "res://nodes/z_indexer.gd"
