@@ -26,6 +26,6 @@ func _update_collision_shape() -> void:
 
 
 func _on_CameraTrigger_body_entered(body: Node) -> void:
-	get_tree().call_group("camera", "update_room_size", _position,
-	_position + _size - Vector2(1, 1))
+	var max_room = _position + _size - Vector2(1, 1)
+	get_tree().call_group("camera", "update_room_size", _position, max_room)
 	return

@@ -2,6 +2,7 @@ extends Node2D
 
 export var _target_length = 32
 export (float, 0, 1) var _lerp_speed = 0.02
+export (int) var _flicker_intensity = 1
 
 var _target_flicker = 0
 var _flicker = 0
@@ -21,5 +22,5 @@ func _process(delta) -> void:
 
 
 func _on_Timer_timeout():
-	_target_flicker = rand_range(-4, 4)
+	_target_flicker = rand_range(-_flicker_intensity, _flicker_intensity)
 	pass
