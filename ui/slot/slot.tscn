@@ -6,13 +6,11 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends CenterContainer
 
-
-
 onready var _frame = $Frame
 onready var _icon = $Icon
 
 
-func update_item(item: Item) -> void:
+func update_item(item: Item):
 	if item is Item:
 		_icon.texture = item.get_texture()
 		_frame.material.set_shader_param(\"subtract_color\", item.get_rarity_color())
@@ -21,11 +19,9 @@ func update_item(item: Item) -> void:
 	return
 "
 
-[sub_resource type="StreamTexture" id=3]
-load_path = "res://.import/frame_selected.png-1626012820163c3f7e4c30828706d1ab.stex"
+[sub_resource type="StreamTexture" id=2]
 
-[sub_resource type="StreamTexture" id=4]
-load_path = "res://.import/frame.png-b0dd66f5091dc651e151c5cebe64b08e.stex"
+[sub_resource type="StreamTexture" id=3]
 
 [node name="Slot" type="CenterContainer"]
 margin_right = 14.0
@@ -37,17 +33,19 @@ __meta__ = {
 }
 
 [node name="Selected" type="TextureRect" parent="."]
-margin_right = 16.0
-margin_bottom = 16.0
-texture = SubResource( 3 )
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 8.0
+margin_bottom = 8.0
+texture = SubResource( 2 )
 
 [node name="Frame" type="TextureRect" parent="."]
 material = ExtResource( 2 )
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 14.0
-margin_bottom = 14.0
-texture = SubResource( 4 )
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 8.0
+margin_bottom = 8.0
+texture = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
