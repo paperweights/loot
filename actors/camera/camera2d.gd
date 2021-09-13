@@ -4,7 +4,7 @@ const ROOM_SIZE = Vector2(128, 128)
 const HALF_ROOM = ROOM_SIZE / 2
 
 export var _shake_intensity = 2
-export (float, 0, 1) var _follow_speed = 0.05
+export (float, 0, 1) var _follow_speed = 0.1
 export (float, 0, 1) var _offset_speed = 0.05
 export (NodePath) var _target_node = ""
 var _min_room = Vector2()
