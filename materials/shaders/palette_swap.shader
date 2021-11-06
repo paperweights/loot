@@ -6,7 +6,6 @@ uniform sampler2D palette;
 
 void fragment()
 {
-	vec4 color = texture(TEXTURE, UV);
-	vec2 position = vec2(color.r, color.g);
+	vec2 position = texture(TEXTURE, UV).rg;
 	COLOR = texture(palette, position);
 }
