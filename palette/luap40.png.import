@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/db32.png-72cee544c108be5b8e12137af9e7b6a4.stex"
+path="res://.import/luap40.png-81edbec34856f4ff1448ce727378176e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://palettes/db32.png"
-dest_files=[ "res://.import/db32.png-72cee544c108be5b8e12137af9e7b6a4.stex" ]
+source_file="res://palette/luap40.png"
+dest_files=[ "res://.import/luap40.png-81edbec34856f4ff1448ce727378176e.stex" ]
 
 [params]
 

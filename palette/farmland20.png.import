@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/luap40.png-52b3760620a4c1db5848b9b74865a37a.stex"
+path="res://.import/farmland20.png-d3771bb5c4abcc606f6f60a571307a00.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://palettes/luap40.png"
-dest_files=[ "res://.import/luap40.png-52b3760620a4c1db5848b9b74865a37a.stex" ]
+source_file="res://palette/farmland20.png"
+dest_files=[ "res://.import/farmland20.png-d3771bb5c4abcc606f6f60a571307a00.stex" ]
 
 [params]
 

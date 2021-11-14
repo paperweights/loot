@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/steam_lords.png-b19287758067ca85a74cabeecf78533a.stex"
+path="res://.import/db32.png-b686457f4d20133490e2aae7fb8e0a56.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://palettes/steam_lords.png"
-dest_files=[ "res://.import/steam_lords.png-b19287758067ca85a74cabeecf78533a.stex" ]
+source_file="res://palette/db32.png"
+dest_files=[ "res://.import/db32.png-b686457f4d20133490e2aae7fb8e0a56.stex" ]
 
 [params]
 

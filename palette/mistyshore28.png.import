@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/punolite_plus_plus.png-c1df8d9e63761fd967ec7ca6d3ba01a2.stex"
+path="res://.import/mistyshore28.png-f8c7af79b3ff332bf06613088684d0e1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://palettes/punolite_plus_plus.png"
-dest_files=[ "res://.import/punolite_plus_plus.png-c1df8d9e63761fd967ec7ca6d3ba01a2.stex" ]
+source_file="res://palette/mistyshore28.png"
+dest_files=[ "res://.import/mistyshore28.png-f8c7af79b3ff332bf06613088684d0e1.stex" ]
 
 [params]
 

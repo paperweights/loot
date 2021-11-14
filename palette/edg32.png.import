@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/zughy32.png-d6eea9b34c6ac97b6719f1bcc07e0150.stex"
+path="res://.import/edg32.png-cf96072972f09902126119db9a76aa9e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://palettes/zughy32.png"
-dest_files=[ "res://.import/zughy32.png-d6eea9b34c6ac97b6719f1bcc07e0150.stex" ]
+source_file="res://palette/edg32.png"
+dest_files=[ "res://.import/edg32.png-cf96072972f09902126119db9a76aa9e.stex" ]
 
 [params]
 

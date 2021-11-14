@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fantasy24.png-81baa0deee4edc23fdbfa4ee5678348b.stex"
+path="res://.import/fantasy24.png-07b5506ffcac8625778a943fb97b4899.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://palettes/fantasy24.png"
-dest_files=[ "res://.import/fantasy24.png-81baa0deee4edc23fdbfa4ee5678348b.stex" ]
+source_file="res://palette/fantasy24.png"
+dest_files=[ "res://.import/fantasy24.png-07b5506ffcac8625778a943fb97b4899.stex" ]
 
 [params]
 

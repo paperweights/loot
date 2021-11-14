@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sweetie16.png-04a1d685b4119f27bc8a25d7c6ffbefc.stex"
+path="res://.import/sweetie16.png-fa039f4d98f0ad638fc73222ea4dffd5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://palettes/sweetie16.png"
-dest_files=[ "res://.import/sweetie16.png-04a1d685b4119f27bc8a25d7c6ffbefc.stex" ]
+source_file="res://palette/sweetie16.png"
+dest_files=[ "res://.import/sweetie16.png-fa039f4d98f0ad638fc73222ea4dffd5.stex" ]
 
 [params]
 
