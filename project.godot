@@ -25,9 +25,9 @@ _global_script_classes=[ {
 "path": "res://nodes/health.gd"
 }, {
 "base": "GridContainer",
-"class": "HeartDisplay",
+"class": "Hearts",
 "language": "GDScript",
-"path": "res://nodes/heart_display.gd"
+"path": "res://ui/hearts/hearts.gd"
 }, {
 "base": "Resource",
 "class": "Inventory",
@@ -48,7 +48,7 @@ _global_script_class_icons={
 "Equipment": "",
 "FPS": "",
 "Health": "",
-"HeartDisplay": "",
+"Hearts": "",
 "Inventory": "",
 "Item": "",
 "ZIndexer": ""
@@ -59,7 +59,7 @@ _global_script_class_icons={
 config/name="loot"
 run/main_scene="res://scenes/root.tscn"
 boot_splash/use_filter=false
-config/icon="res://icon.png"
+config/icon="res://art/icon.png"
 
 [display]
 

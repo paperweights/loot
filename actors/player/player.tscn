@@ -8,9 +8,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3, 2 )
 
-[node name="Player" type="KinematicBody2D" groups=[
-"player",
-]]
+[node name="Player" type="KinematicBody2D" groups=["player"]]
 collision_layer = 3
 script = ExtResource( 2 )
 
@@ -24,8 +22,5 @@ shape = SubResource( 1 )
 script = ExtResource( 4 )
 _target_node = NodePath("..")
 
-[node name="Health" type="Node" parent="." groups=[
-"player_health",
-]]
+[node name="Health" type="Node" parent="."]
 script = ExtResource( 5 )
-_max_health = 9

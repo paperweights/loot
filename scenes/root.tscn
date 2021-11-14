@@ -6,7 +6,7 @@
 [ext_resource path="res://ui/hud.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ui/theme.tres" type="Theme" id=5]
 [ext_resource path="res://ui/cursor/cursor.tscn" type="PackedScene" id=6]
-[ext_resource path="res://nodes/heart_display.gd" type="Script" id=7]
+[ext_resource path="res://ui/hearts/hearts.gd" type="Script" id=7]
 
 [node name="ViewportContainer" type="ViewportContainer"]
 material = ExtResource( 2 )
@@ -34,7 +34,7 @@ margin_bottom = 14.0
 theme = ExtResource( 5 )
 script = ExtResource( 3 )
 
-[node name="HeartDisplay" type="GridContainer" parent="Viewport/HUD"]
+[node name="Hearts" type="GridContainer" parent="Viewport/HUD" groups=["hearts"]]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 127.0
