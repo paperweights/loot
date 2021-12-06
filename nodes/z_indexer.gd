@@ -1,16 +1,17 @@
 class_name ZIndexer
 extends Node2D
 
-export (NodePath) var _target_node = ""
+const OFFSET=64
 
 onready var _camera: Camera2D = get_tree().get_nodes_in_group("camera")[0]
-onready var _target: Node2D = get_node(_target_node)
+onready var _parent: Node2D = get_node("../")
 
 
-func _process(delta) -> void:
-	_target.z_index = _get_z_index()
-	return
+func _process(_delta):
+	_parent.z_index = _get_z_index()
 
 
 func _get_z_index() -> int:
-	return int(_target.global_position.y - _camera.global_position.y + 64)
+	var z_index = int(global_position.y - _camera.global_position.y + OFFSET)
+	print(z_index)
+	return z_index
