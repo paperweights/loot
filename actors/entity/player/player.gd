@@ -1,6 +1,4 @@
-extends KinematicBody2D
-
-export var _speed = 50
+extends "res://actors/entity/entity.gd"
 
 var _keys_held = [
 	["ui_left", false],
@@ -8,8 +6,6 @@ var _keys_held = [
 	["ui_up", false],
 	["ui_down", false],
 ]
-
-onready var _sprite = $AnimatedSprite
 
 
 func _unhandled_input(event):
@@ -23,14 +19,10 @@ func _unhandled_input(event):
 	return
 
 
-func _physics_process(delta: float):
+func _physics_process(_delta: float):
 	# Work out input.
-	var input = Vector2(
+	_input = Vector2(
 		float(_keys_held[1][1]) - float(_keys_held[0][1]),
 		float(_keys_held[3][1]) - float(_keys_held[2][1])
 	)
-	# Only move on input.
-	var velocity = input * _speed
-	velocity = move_and_slide(velocity)
-	get_tree().call_group("player_sprite", "animate", velocity)
-	return
+	._physics_process(_delta)

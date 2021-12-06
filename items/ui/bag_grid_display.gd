@@ -1,6 +1,6 @@
 extends GridContainer
 
-const PLAYER_INVENTORY: Inventory = preload("res://actors/player/player_inventory.tres")
+const PLAYER_INVENTORY: Inventory = preload("res://actors/entity/player/player_inventory.tres")
 const SLOT_SCENE = preload("res://ui/slot/slot.tscn")
 
 var _slots = []

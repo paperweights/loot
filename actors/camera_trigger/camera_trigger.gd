@@ -29,5 +29,6 @@ func _update_camera():
 
 
 func _on_CameraTrigger_body_entered(body):
-	print(body)
+	if !body.is_in_group("player"):
+		 return
 	_update_camera()

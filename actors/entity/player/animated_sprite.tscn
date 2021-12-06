@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://actors/entity/player/animated_sprite.gd" type="Script" id=1]
+[ext_resource path="res://actors/entity/player/sprite_frames.tres" type="SpriteFrames" id=2]
+
+[node name="AnimatedSprite" type="AnimatedSprite"]
+frames = ExtResource( 2 )
+animation = "idle"
+script = ExtResource( 1 )

@@ -13,5 +13,4 @@ func _process(_delta):
 
 func _get_z_index() -> int:
 	var z_index = int(global_position.y - _camera.global_position.y + OFFSET)
-	print(z_index)
 	return z_index

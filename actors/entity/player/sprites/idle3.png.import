@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/run2.png-93dc588838be50bcf6cb5385702c6dbf.stex"
+path="res://.import/idle3.png-ce591bc5b1d66c10fe1743859619d9ad.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://actors/player/sprites/run2.png"
-dest_files=[ "res://.import/run2.png-93dc588838be50bcf6cb5385702c6dbf.stex" ]
+source_file="res://actors/entity/player/sprites/idle3.png"
+dest_files=[ "res://.import/idle3.png-ce591bc5b1d66c10fe1743859619d9ad.stex" ]
 
 [params]
 

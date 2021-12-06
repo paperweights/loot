@@ -1,12 +1,14 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://prefabs/tilemap.tscn" type="PackedScene" id=1]
-[ext_resource path="res://actors/player/player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://actors/entity/player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://actors/lighting/light_source/light_source.tscn" type="PackedScene" id=3]
 [ext_resource path="res://materials/shaders/subtract.shader" type="Shader" id=4]
 [ext_resource path="res://actors/camera/camera2d.tscn" type="PackedScene" id=5]
 [ext_resource path="res://actors/camera_trigger/camera_trigger.tscn" type="PackedScene" id=6]
 [ext_resource path="res://lighting_test.png" type="Texture" id=7]
+[ext_resource path="res://actors/entity/enemy/enemy.tscn" type="PackedScene" id=8]
+[ext_resource path="res://actors/pathing/path_finder.gd" type="Script" id=9]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
@@ -47,6 +49,9 @@ position = Vector2( 64, 64 )
 [node name="LightSource" parent="Player" instance=ExtResource( 3 )]
 position = Vector2( 0, -4 )
 
+[node name="Enemy" parent="." instance=ExtResource( 8 )]
+position = Vector2( 368, 32 )
+
 [node name="Camera2D" parent="." instance=ExtResource( 5 )]
 _shake_intensity = 8
 _target_node = NodePath("../Player")
@@ -65,3 +70,6 @@ _size = Vector2( 2, 1 )
 [node name="CameraTrigger4" parent="." instance=ExtResource( 6 )]
 _position = Vector2( -1, 0 )
 _size = Vector2( 1, 1 )
+
+[node name="PathFinder" type="Node" parent="."]
+script = ExtResource( 9 )

@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://actors/player/animated_sprite.tscn" type="PackedScene" id=1]
-[ext_resource path="res://actors/player/player.gd" type="Script" id=2]
-[ext_resource path="res://nodes/z_indexer.gd" type="Script" id=4]
-[ext_resource path="res://nodes/health.gd" type="Script" id=5]
+[ext_resource path="res://actors/entity/player/animated_sprite.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/entity/player/player.gd" type="Script" id=2]
+[ext_resource path="res://nodes/z_indexer.gd" type="Script" id=3]
+[ext_resource path="res://nodes/health.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3, 2 )
@@ -11,6 +11,7 @@ extents = Vector2( 3, 2 )
 [node name="Player" type="KinematicBody2D" groups=["player"]]
 collision_layer = 3
 script = ExtResource( 2 )
+_speed = 30
 
 [node name="AnimatedSprite" parent="." instance=ExtResource( 1 )]
 position = Vector2( 0, -5 )
@@ -20,7 +21,7 @@ position = Vector2( 0, -2 )
 shape = SubResource( 1 )
 
 [node name="ZIndexer" type="Node2D" parent="."]
-script = ExtResource( 4 )
+script = ExtResource( 3 )
 
 [node name="Health" type="Node" parent="."]
-script = ExtResource( 5 )
+script = ExtResource( 4 )
