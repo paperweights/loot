@@ -1,23 +1,35 @@
-[gd_resource type="Theme" load_steps=6 format=2]
+[gd_resource type="Theme" load_steps=9 format=2]
 
 [ext_resource path="res://fonts/loot/loot.tres" type="DynamicFont" id=1]
 [ext_resource path="res://ui/tab_container/panel.tres" type="StyleBox" id=2]
 [ext_resource path="res://ui/tab_container/tab_bg.tres" type="StyleBox" id=3]
 [ext_resource path="res://ui/tab_container/tab_fg.tres" type="StyleBox" id=4]
 [ext_resource path="res://ui/panel.tres" type="StyleBox" id=5]
+[ext_resource path="res://ui/panel_pressed.tres" type="StyleBox" id=6]
+[ext_resource path="res://ui/panel_disabled.tres" type="StyleBox" id=7]
+[ext_resource path="res://ui/panel_hover.tres" type="StyleBox" id=8]
 
 [resource]
 default_font = ExtResource( 1 )
+Button/colors/font_color = Color( 1, 0, 0, 1 )
+Button/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+Button/colors/font_color_focus = Color( 1, 0, 0, 1 )
+Button/colors/font_color_hover = Color( 1, 0, 0, 1 )
+Button/colors/font_color_pressed = Color( 1, 0, 0, 1 )
+Button/styles/disabled = ExtResource( 7 )
+Button/styles/focus = ExtResource( 8 )
+Button/styles/hover = ExtResource( 8 )
+Button/styles/normal = ExtResource( 5 )
+Button/styles/pressed = ExtResource( 6 )
 Label/colors/font_color = Color( 1, 0, 0, 1 )
 Label/colors/font_color_shadow = Color( 0, 0, 0, 0 )
 Label/colors/font_outline_modulate = Color( 1, 1, 1, 1 )
 Label/constants/line_spacing = 3
 Label/constants/shadow_as_outline = 0
-Label/constants/shadow_offset_x = 1
-Label/constants/shadow_offset_y = 1
-Label/fonts/font = null
+Label/fonts/font = ExtResource( 1 )
 Label/styles/normal = null
 Panel/styles/panel = ExtResource( 5 )
+PanelContainer/styles/panel = ExtResource( 5 )
 TabContainer/colors/font_color_bg = Color( 0.752941, 0, 0, 1 )
 TabContainer/colors/font_color_disabled = Color( 1, 0, 0, 1 )
 TabContainer/colors/font_color_fg = Color( 1, 0, 0, 1 )
@@ -37,3 +49,4 @@ TabContainer/styles/panel = ExtResource( 2 )
 TabContainer/styles/tab_bg = ExtResource( 3 )
 TabContainer/styles/tab_disabled = ExtResource( 3 )
 TabContainer/styles/tab_fg = ExtResource( 4 )
+VBoxContainer/constants/separation = 2

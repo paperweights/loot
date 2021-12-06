@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/test/test_level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://palette/palette.tres" type="Material" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://ui/theme.tres" type="Theme" id=5]
 [ext_resource path="res://ui/cursor/cursor.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ui/hearts/hearts.gd" type="Script" id=7]
+[ext_resource path="res://ui/menu.tscn" type="PackedScene" id=8]
 
 [node name="ViewportContainer" type="ViewportContainer"]
 material = ExtResource( 2 )
@@ -44,6 +45,9 @@ columns = 18
 script = ExtResource( 7 )
 
 [node name="Menu" parent="Viewport/HUD" instance=ExtResource( 4 )]
+visible = false
+
+[node name="MainMenu" parent="Viewport/HUD" instance=ExtResource( 8 )]
 visible = false
 
 [node name="Cursor" parent="Viewport/HUD" instance=ExtResource( 6 )]

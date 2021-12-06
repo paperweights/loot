@@ -162,3 +162,4 @@ quality/intended_usage/framebuffer_allocation.mobile=0
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 batching/precision/uv_contract=true
+quality/dynamic_fonts/use_oversampling=false

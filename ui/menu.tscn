@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://ui/theme.tres" type="Theme" id=1]
+[ext_resource path="res://ui/menu/main.gd" type="Script" id=2]
+[ext_resource path="res://ui/menu/menu.gd" type="Script" id=3]
+
+[node name="MainMenu" type="PanelContainer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -24.0
+margin_top = -22.5
+margin_right = 24.0
+margin_bottom = 18.5
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Main" type="VBoxContainer" parent="."]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 46.0
+margin_bottom = 39.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewGame" type="Button" parent="Main"]
+margin_right = 44.0
+margin_bottom = 11.0
+theme = ExtResource( 1 )
+text = "new game"
+
+[node name="Settings" type="Button" parent="Main"]
+margin_top = 13.0
+margin_right = 44.0
+margin_bottom = 24.0
+theme = ExtResource( 1 )
+disabled = true
+text = "settings"
+
+[node name="Quit" type="Button" parent="Main"]
+margin_top = 26.0
+margin_right = 44.0
+margin_bottom = 37.0
+theme = ExtResource( 1 )
+text = "quit"
+
+[connection signal="pressed" from="Main/NewGame" to="Main" method="_on_NewGame_pressed"]
+[connection signal="pressed" from="Main/Settings" to="Main" method="_on_Settings_pressed"]
+[connection signal="pressed" from="Main/Quit" to="Main" method="_on_Quit_pressed"]
