@@ -51,3 +51,6 @@ visible = false
 visible = false
 
 [node name="Cursor" parent="Viewport/HUD" instance=ExtResource( 6 )]
+
+[connection signal="toggled" from="Viewport/HUD/Menu" to="Viewport/HUD/MainMenu" method="_on_Menu_toggled"]
+[connection signal="toggled" from="Viewport/HUD/MainMenu" to="Viewport/HUD/Menu" method="_on_MainMenu_toggled"]
