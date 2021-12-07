@@ -39,11 +39,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://items/item.gd"
 }, {
-"base": "Reference",
-"class": "Point",
-"language": "GDScript",
-"path": "res://actors/pathing/point.gd"
-}, {
 "base": "Node2D",
 "class": "ZIndexer",
 "language": "GDScript",
@@ -56,7 +51,6 @@ _global_script_class_icons={
 "Hearts": "",
 "Inventory": "",
 "Item": "",
-"Point": "",
 "ZIndexer": ""
 }
 
