@@ -1,40 +1,46 @@
 extends "res://actors/entity/entity.gd"
 
-const DISTANCE_THRESHOLD = 4 * 4
-const RETARGET_THRESHOLD = 16 * 16
+const DISTANCE_THRESHOLD = pow(2, 2)
+const PLAYER_THRESHOLD = pow(12, 2)
 
-var _path: PoolVector2Array
+var _path: Array
+var _moving: bool
 
-onready var _path_finder: Node = get_node("../PathFinder")
-onready var _target: Node2D = get_node("../Player")
-
-
-func _ready():
-	_input = Vector2(1, 0)
+onready var _target: Node2D = get_node('../Player')
+onready var _nav: Navigation2D = get_node('../Navigation2D')
 
 
 func _physics_process(_delta):
-	# Find a new path
-	if _path.empty():
-		_retarget()
-		return
-	var distance = global_position.distance_squared_to(_path[0])
-	# Move if got close to target
-	if distance < DISTANCE_THRESHOLD:
+	if _moving:
 		_move()
-	# Retarget if moved to far away
-	elif distance > RETARGET_THRESHOLD:
-		print("too far")
-		_retarget()
+	else:
+		_update_path()
 
 
 func _move():
-	var target: Vector2 = _path[0]
-	print('moving to ', target)
+	var last_point = position
+	var size = _path.size()
+	if size:
+		var distance = last_point.distance_squared_to(_path[0])
+		_input = (_path[0] - last_point).normalized()
+		# keep moving if more distance to cover
+		var threshold = PLAYER_THRESHOLD if size == 1 else DISTANCE_THRESHOLD
+		if distance <= threshold:
+			position = last_point
+			last_point = _path[0]
+			_path.remove(0)
+		return
+	# Stop moving once target reached
+	_moving = false
+	_input = Vector2()
+	return
+
+
+func _update_path():
+	var target_pos = _nav.get_closest_point(_target.position)
+	# Skip if too close already
+	if position.distance_squared_to(target_pos) < PLAYER_THRESHOLD:
+		return
+	_path = _nav.get_simple_path(position, target_pos)
 	_path.remove(0)
-	_input = (target - global_position).normalized()
-
-
-func _retarget():
-	_path = _path_finder.find_path(global_position, _target.global_position)
-	_move()
+	_moving = true

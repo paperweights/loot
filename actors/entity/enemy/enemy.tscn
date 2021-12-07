@@ -6,7 +6,7 @@
 [ext_resource path="res://nodes/health.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 3, 2 )
+extents = Vector2( 2, 1.5 )
 
 [node name="Enemy" type="KinematicBody2D"]
 collision_layer = 3
@@ -17,7 +17,7 @@ _speed = 10
 position = Vector2( 0, -5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -2 )
+position = Vector2( 0, -1.5 )
 shape = SubResource( 1 )
 
 [node name="ZIndexer" type="Node2D" parent="."]
