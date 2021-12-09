@@ -1,11 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://prefabs/tilemap.tscn" type="PackedScene" id=1]
-[ext_resource path="res://actors/entity/player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://actors/lighting/light_source/light_source.tscn" type="PackedScene" id=3]
 [ext_resource path="res://materials/shaders/subtract.shader" type="Shader" id=4]
 [ext_resource path="res://actors/camera/camera2d.tscn" type="PackedScene" id=5]
-[ext_resource path="res://actors/camera_trigger/camera_trigger.tscn" type="PackedScene" id=6]
+[ext_resource path="res://actors/entity/player/player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://lighting_test.png" type="Texture" id=7]
 [ext_resource path="res://actors/entity/enemy/enemy.tscn" type="PackedScene" id=8]
 
@@ -71,9 +70,9 @@ func _get_id(position: Vector2) -> int:
 "
 
 [sub_resource type="NavigationPolygon" id=4]
-vertices = PoolVector2Array( 268, 66, 268, 70, 244, 70, 92, 68, 244, 66, 204, 114, 204, 88, 244, 246, 12, 246, 172, 114, 92, 100, 172, 80, 68, 100, 60, 100, 36, 100, 12, 72, 36, 72, 92, 72, 164, 58, 244, 18, 156, 66, 164, 40, 12, -10, 12, -110, 244, -110, 60, -10, 244, -10, 68, -10, 68, 18, 60, 18, 156, 40, 156, 32, 140, 32, 140, 40, 132, 40, 132, 58, 140, 58, 140, 66, 156, 58, 268, 18, 372, 18, 372, 118, 268, 118, 68, 40, 68, 68, 60, 68, 60, 40, 196, 88, 196, 80, 68, 72, 60, 72, 4, 72, 4, 66, 12, 66, 12, 18, 36, 68, 36, 40, 92, 40 )
-polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 5, 6, 2, 7 ), PoolIntArray( 5, 7, 8, 9 ), PoolIntArray( 9, 8, 10, 11 ), PoolIntArray( 12, 10, 8 ), PoolIntArray( 13, 12, 8 ), PoolIntArray( 14, 13, 8 ), PoolIntArray( 14, 8, 15, 16 ), PoolIntArray( 11, 10, 17 ), PoolIntArray( 18, 19, 4, 20 ), PoolIntArray( 19, 18, 21 ), PoolIntArray( 22, 23, 24, 25 ), PoolIntArray( 24, 26, 27 ), PoolIntArray( 25, 24, 27 ), PoolIntArray( 25, 27, 28, 29 ), PoolIntArray( 21, 30, 31, 19 ), PoolIntArray( 32, 33, 34 ), PoolIntArray( 35, 36, 37, 3 ), PoolIntArray( 20, 38, 18 ), PoolIntArray( 0, 39, 40, 41 ), PoolIntArray( 41, 42, 1 ), PoolIntArray( 0, 41, 1 ), PoolIntArray( 43, 44, 45, 46 ), PoolIntArray( 6, 47, 48, 2 ), PoolIntArray( 49, 12, 13, 50 ), PoolIntArray( 15, 51, 52, 53 ), PoolIntArray( 16, 15, 53 ), PoolIntArray( 16, 53, 54, 55 ), PoolIntArray( 3, 2, 48, 11, 17, 44 ), PoolIntArray( 44, 17, 49, 45 ), PoolIntArray( 45, 49, 50, 55 ), PoolIntArray( 55, 50, 16 ), PoolIntArray( 56, 55, 54 ), PoolIntArray( 56, 54, 29, 46 ), PoolIntArray( 43, 46, 29, 28 ), PoolIntArray( 43, 28, 19, 32 ), PoolIntArray( 20, 4, 3 ), PoolIntArray( 37, 20, 3 ), PoolIntArray( 35, 3, 57, 34 ), PoolIntArray( 32, 34, 57 ), PoolIntArray( 32, 57, 43 ), PoolIntArray( 32, 19, 31 ) ]
-outlines = [ PoolVector2Array( 12, -110, 244, -110, 244, -10, 68, -10, 68, 18, 244, 18, 244, 66, 268, 66, 268, 18, 372, 18, 372, 118, 268, 118, 268, 70, 244, 70, 244, 246, 12, 246, 12, 72, 4, 72, 4, 66, 12, 66, 12, 18, 60, 18, 60, -10, 12, -10 ), PoolVector2Array( 172, 80, 196, 80, 196, 88, 204, 88, 204, 114, 172, 114 ), PoolVector2Array( 140, 32, 156, 32, 156, 40, 164, 40, 164, 58, 156, 58, 156, 66, 140, 66, 140, 58, 132, 58, 132, 40, 140, 40 ), PoolVector2Array( 68, 68, 92, 68, 92, 40, 68, 40 ), PoolVector2Array( 68, 100, 92, 100, 92, 72, 68, 72 ), PoolVector2Array( 36, 40, 60, 40, 60, 68, 36, 68 ), PoolVector2Array( 36, 100, 60, 100, 60, 72, 36, 72 ) ]
+vertices = PoolVector2Array( 92, 68, 244, 66, 268, 66, 268, 72, 244, 72, 244, -8, 68, -8, 92, -38, 244, -110, 204, 114, 204, 88, 244, 248, 60, -38, 60, -8, 12, 248, 172, 114, 92, 100, 172, 80, 68, 100, 60, 100, 36, 100, 12, 72, 36, 72, 92, -72, 12, -110, 28, -72, 12, -8, 28, -38, 52, -38, 92, 72, 164, 58, 244, 18, 156, 66, 164, 40, 52, -46, 60, -46, 68, 18, 60, 18, 156, 40, 156, 32, 140, 32, 140, 40, 132, 40, 132, 58, 140, 58, 140, 66, 156, 58, 68, 40, 68, 68, 60, 68, 60, 40, 268, 18, 372, 18, 372, 120, 268, 120, 196, 88, 196, 80, 68, 72, 60, 72, 4, 72, 4, 66, 12, 66, 12, 18, 36, 68, 36, 40, 92, 40 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 5, 6, 7, 8 ), PoolIntArray( 9, 10, 4, 11 ), PoolIntArray( 12, 7, 6, 13 ), PoolIntArray( 9, 11, 14, 15 ), PoolIntArray( 15, 14, 16, 17 ), PoolIntArray( 18, 16, 14 ), PoolIntArray( 19, 18, 14 ), PoolIntArray( 20, 19, 14 ), PoolIntArray( 20, 14, 21, 22 ), PoolIntArray( 8, 7, 23 ), PoolIntArray( 24, 8, 23, 25 ), PoolIntArray( 26, 24, 25, 27 ), PoolIntArray( 13, 26, 27, 28 ), PoolIntArray( 17, 16, 29 ), PoolIntArray( 30, 31, 1, 32 ), PoolIntArray( 31, 30, 33 ), PoolIntArray( 28, 34, 35, 12 ), PoolIntArray( 13, 28, 12 ), PoolIntArray( 13, 6, 36, 37 ), PoolIntArray( 33, 38, 39, 31 ), PoolIntArray( 40, 41, 42 ), PoolIntArray( 43, 44, 45, 0 ), PoolIntArray( 32, 46, 30 ), PoolIntArray( 47, 48, 49, 50 ), PoolIntArray( 2, 51, 52, 53 ), PoolIntArray( 53, 54, 3 ), PoolIntArray( 2, 53, 3 ), PoolIntArray( 10, 55, 56, 4 ), PoolIntArray( 57, 18, 19, 58 ), PoolIntArray( 21, 59, 60, 61 ), PoolIntArray( 22, 21, 61 ), PoolIntArray( 22, 61, 62, 63 ), PoolIntArray( 0, 4, 56, 17, 29, 48 ), PoolIntArray( 48, 29, 57, 49 ), PoolIntArray( 49, 57, 58, 63 ), PoolIntArray( 63, 58, 22 ), PoolIntArray( 64, 63, 62 ), PoolIntArray( 64, 62, 37, 50 ), PoolIntArray( 47, 50, 37, 36 ), PoolIntArray( 47, 36, 31, 40 ), PoolIntArray( 32, 1, 0 ), PoolIntArray( 45, 32, 0 ), PoolIntArray( 43, 0, 65, 42 ), PoolIntArray( 40, 42, 65 ), PoolIntArray( 40, 65, 47 ), PoolIntArray( 40, 31, 39 ) ]
+outlines = [ PoolVector2Array( 12, -110, 244, -110, 244, -8, 68, -8, 68, 18, 244, 18, 244, 66, 268, 66, 268, 18, 372, 18, 372, 120, 268, 120, 268, 72, 244, 72, 244, 248, 12, 248, 12, 72, 4, 72, 4, 66, 12, 66, 12, 18, 60, 18, 60, -8, 12, -8 ), PoolVector2Array( 172, 80, 196, 80, 196, 88, 204, 88, 204, 114, 172, 114 ), PoolVector2Array( 140, 32, 156, 32, 156, 40, 164, 40, 164, 58, 156, 58, 156, 66, 140, 66, 140, 58, 132, 58, 132, 40, 140, 40 ), PoolVector2Array( 68, 68, 92, 68, 92, 40, 68, 40 ), PoolVector2Array( 68, 100, 92, 100, 92, 72, 68, 72 ), PoolVector2Array( 36, 40, 60, 40, 60, 68, 36, 68 ), PoolVector2Array( 36, 100, 60, 100, 60, 72, 36, 72 ), PoolVector2Array( 28, -38, 52, -38, 52, -46, 60, -46, 60, -38, 92, -38, 92, -72, 28, -72 ) ]
 
 [node name="Level" type="Node2D"]
 
@@ -98,7 +97,7 @@ position = Vector2( 128, 128 )
 scale = Vector2( 10, 10 )
 texture = ExtResource( 7 )
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
+[node name="Player" parent="." instance=ExtResource( 6 )]
 position = Vector2( 36, 36 )
 
 [node name="LightSource" parent="Player" instance=ExtResource( 3 )]
@@ -109,23 +108,7 @@ position = Vector2( 16, 24 )
 _speed = 50
 
 [node name="Camera2D" parent="." instance=ExtResource( 5 )]
-_shake_intensity = 8
 _target_node = NodePath("../Player")
-
-[node name="CameraTrigger" parent="." instance=ExtResource( 6 )]
-_size = Vector2( 2, 2 )
-
-[node name="CameraTrigger2" parent="." instance=ExtResource( 6 )]
-_position = Vector2( 2, 0 )
-_size = Vector2( 1, 1 )
-
-[node name="CameraTrigger3" parent="." instance=ExtResource( 6 )]
-_position = Vector2( 0, -1 )
-_size = Vector2( 2, 1 )
-
-[node name="CameraTrigger4" parent="." instance=ExtResource( 6 )]
-_position = Vector2( -1, 0 )
-_size = Vector2( 1, 1 )
 
 [node name="PathFinder" type="Node" parent="."]
 script = SubResource( 5 )
