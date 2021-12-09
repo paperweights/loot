@@ -10,11 +10,6 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Resource",
-"class": "Doors",
-"language": "GDScript",
-"path": "res://prefabs/rooms/doors.gd"
-}, {
-"base": "Resource",
 "class": "Equipment",
 "language": "GDScript",
 "path": "res://items/equipment.gd"
@@ -50,7 +45,6 @@ _global_script_classes=[ {
 "path": "res://nodes/z_indexer.gd"
 } ]
 _global_script_class_icons={
-"Doors": "",
 "Equipment": "",
 "FPS": "",
 "Health": "",
