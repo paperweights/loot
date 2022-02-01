@@ -4,9 +4,9 @@
 [ext_resource path="res://prefabs/rooms/room.gd" type="Script" id=2]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 68, 106, 68, 120, 12, 120, 20, 106, 12, 18, 20, 32, 116, 18, 108, 32, 116, 72, 108, 72 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 3, 2, 4, 5 ), PoolIntArray( 5, 4, 6, 7 ), PoolIntArray( 7, 6, 8, 9 ) ]
-outlines = [ PoolVector2Array( 68, 106, 20, 106, 20, 32, 108, 32, 108, 72, 116, 72, 116, 18, 12, 18, 12, 120, 68, 120 ) ]
+vertices = PoolVector2Array( 68, 106, 68, 120, 12, 120, 20, 106, 12, 18, 20, 32, 116, 18, 108, 32, 116, 66, 108, 72, 136, 72, 136, 66 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 3, 2, 4, 5 ), PoolIntArray( 5, 4, 6, 7 ), PoolIntArray( 7, 6, 8, 9 ), PoolIntArray( 10, 9, 8, 11 ) ]
+outlines = [ PoolVector2Array( 68, 106, 20, 106, 20, 32, 108, 32, 108, 72, 136, 72, 136, 66, 116, 66, 116, 18, 12, 18, 12, 120, 68, 120 ) ]
 
 [node name="Room" type="Node2D"]
 script = ExtResource( 2 )

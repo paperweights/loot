@@ -42,5 +42,6 @@ func _update_path():
 	if position.distance_squared_to(target_pos) < PLAYER_THRESHOLD:
 		return
 	_path = _nav.get_simple_path(position, target_pos)
-	_path.remove(0)
+	if _path:
+		_path.remove(0)
 	_moving = true

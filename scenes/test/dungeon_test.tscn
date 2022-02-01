@@ -1,0 +1,112 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://prefabs/tilemap.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/entity/player/player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://actors/lighting/light_source/light_source.tscn" type="PackedScene" id=3]
+[ext_resource path="res://materials/shaders/subtract.shader" type="Shader" id=4]
+[ext_resource path="res://actors/camera/camera2d.tscn" type="PackedScene" id=5]
+[ext_resource path="res://rooms/rooms.gd" type="Script" id=6]
+[ext_resource path="res://actors/entity/enemy/enemy.tscn" type="PackedScene" id=8]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 4 )
+shader_param/subtract_color = Color( 0.25098, 0.752941, 0, 0 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 4 )
+shader_param/subtract_color = Color( 0.25098, 0, 0, 0 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 4 )
+shader_param/subtract_color = Color( 0.25098, 0, 0, 0 )
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Node
+
+const CELL_SIZE = Vector2(16, 16)
+
+var _path: AStar2D
+
+onready var _floor: TileMap = get_node('../Rooms/Floor')
+onready var _walls: TileMap = get_node('../Rooms/Walls')
+onready var _rect = _floor.get_used_rect()
+onready var _cells = _get_walkable_cells()
+
+
+func _ready():
+	_path = AStar2D.new()
+	for c in range(len(_cells)):
+		var pos = _cells[c]
+		var id = _get_id(pos)
+		_path.add_point(id, pos)
+		# Connect to adjacent tiles
+		_connect_neighbour(id, pos + Vector2(0, -1)) # Top
+		_connect_neighbour(id, pos + Vector2(0, 1)) # Down
+		_connect_neighbour(id, pos + Vector2(0, -1)) # Left
+		_connect_neighbour(id, pos + Vector2(0, 1)) # Right
+
+
+func _connect_neighbour(id: int, pos: Vector2):
+	if !_cells.has(pos):
+		return
+	var new_id = _get_id(pos)
+	_path.add_point(new_id, pos)
+	_path.connect_points(id, new_id)
+
+
+func _get_walkable_cells() -> Array:
+	var floors = _floor.get_used_cells()
+	# Remove floor that is blocked by a wall
+	var walls = _walls.get_used_cells()
+	for wall in walls:
+		floors.erase(wall)
+	return floors
+
+
+func _get_id(position: Vector2) -> int:
+	var pos = position - _rect.position
+	var id = (pos.y * _rect.size.x) + pos.x
+	return id
+"
+
+[node name="Level" type="Node2D"]
+
+[node name="Rooms" type="Node2D" parent="."]
+script = ExtResource( 6 )
+
+[node name="Floor" parent="Rooms" instance=ExtResource( 1 )]
+material = SubResource( 1 )
+z_index = -2
+
+[node name="Walls" parent="Rooms" instance=ExtResource( 1 )]
+material = SubResource( 2 )
+z_index = -1
+tile_data = PoolIntArray( -1, 3, 0, -65536, 3, 0, -65535, 3, 0, -65534, 3, 0, -65533, 3, 0, -65532, 3, 0, -65531, 3, 0, -65530, 3, 0, -65527, 3, 0, -65526, 3, 0, -65525, 3, 0, -65524, 3, 0, -65523, 3, 0, -65522, 3, 0, -65521, 3, 0, -65520, 3, 0, 65535, 3, 0, 0, 3, 0, 1, 3, 0, 2, 3, 0, 3, 3, 0, 4, 3, 0, 5, 3, 0, 6, 3, 0, 9, 3, 0, 10, 3, 0, 11, 3, 0, 12, 3, 0, 13, 3, 0, 14, 3, 0, 15, 3, 0, 16, 3, 0, 131071, 3, 0, 65536, 3, 0, 65537, 3, 0, 65538, 3, 0, 65539, 3, 0, 65540, 3, 0, 65541, 3, 0, 65542, 3, 65537, 65545, 3, 65536, 65546, 3, 0, 65547, 3, 0, 65548, 3, 0, 65549, 3, 0, 65550, 3, 0, 65551, 3, 0, 65552, 3, 0, 196607, 3, 0, 131072, 3, 0, 131087, 3, 0, 131088, 3, 0, 262143, 3, 0, 196608, 3, 0, 196623, 3, 0, 196624, 3, 0, 327679, 3, 0, 262144, 3, 0, 262159, 3, 0, 262160, 3, 0, 393215, 3, 0, 327680, 3, 0, 327695, 3, 0, 327696, 3, 0, 458751, 3, 65536, 393216, 3, 65537, 393231, 3, 65536, 393232, 3, 65537, 655359, 3, 0, 589824, 3, 0, 589839, 3, 0, 589840, 3, 0, 720895, 3, 0, 655360, 3, 0, 655375, 3, 0, 655376, 3, 0, 786431, 3, 0, 720896, 3, 0, 720911, 3, 0, 720912, 3, 0, 851967, 3, 0, 786432, 3, 0, 786447, 3, 0, 786448, 3, 0, 917503, 3, 0, 851968, 3, 0, 851983, 3, 0, 851984, 3, 0, 983039, 3, 0, 917504, 3, 0, 917519, 3, 0, 917520, 3, 0, 1048575, 3, 0, 983040, 3, 0, 983041, 3, 0, 983042, 3, 0, 983043, 3, 0, 983044, 3, 0, 983045, 3, 0, 983046, 3, 0, 983049, 3, 0, 983050, 3, 0, 983051, 3, 0, 983052, 3, 0, 983053, 3, 0, 983054, 3, 0, 983055, 3, 0, 983056, 3, 0, 1114111, 3, 65536, 1048576, 3, 0, 1048577, 3, 0, 1048578, 3, 0, 1048579, 3, 0, 1048580, 3, 0, 1048581, 3, 0, 1048582, 3, 65537, 1048585, 3, 65536, 1048586, 3, 0, 1048587, 3, 0, 1048588, 3, 0, 1048589, 3, 0, 1048590, 3, 0, 1048591, 3, 0, 1048592, 3, 65537 )
+
+[node name="Tops" parent="Rooms" instance=ExtResource( 1 )]
+material = SubResource( 3 )
+z_index = 129
+collision_layer = 33
+tile_data = PoolIntArray( -1, 0, 131074, -65536, 0, 131075, -65535, 0, 131075, -65534, 0, 131075, -65533, 0, 131075, -65532, 0, 131075, -65531, 0, 131075, -65530, 0, 131076, -65527, 0, 131074, -65526, 0, 131075, -65525, 0, 131075, -65524, 0, 131075, -65523, 0, 131075, -65522, 0, 131075, -65521, 0, 131075, -65520, 0, 131076, 65535, 0, 196610, 0, 0, 131078, 1, 0, 262147, 2, 0, 262147, 3, 0, 262147, 4, 0, 262147, 5, 0, 262147, 6, 0, 262148, 9, 0, 262146, 10, 0, 262147, 11, 0, 262147, 12, 0, 262147, 13, 0, 262147, 14, 0, 262147, 15, 0, 393220, 16, 0, 196612, 131071, 0, 196610, 65536, 0, 196612, 65551, 0, 196610, 65552, 0, 196612, 196607, 0, 196610, 131072, 0, 196612, 131087, 0, 196610, 131088, 0, 196612, 262143, 0, 196610, 196608, 0, 196612, 196623, 0, 196610, 196624, 0, 196612, 327679, 0, 196610, 262144, 0, 196612, 262159, 0, 196610, 262160, 0, 196612, 393215, 0, 196610, 327680, 0, 196612, 327695, 0, 196610, 327696, 0, 196612, 458751, 0, 262146, 393216, 0, 262148, 393231, 0, 262146, 393232, 0, 262148, 655359, 0, 131074, 589824, 0, 131076, 589839, 0, 131074, 589840, 0, 131076, 720895, 0, 196610, 655360, 0, 196612, 655375, 0, 196610, 655376, 0, 196612, 786431, 0, 196610, 720896, 0, 196612, 720911, 0, 196610, 720912, 0, 196612, 851967, 0, 196610, 786432, 0, 196612, 786447, 0, 196610, 786448, 0, 196612, 917503, 0, 196610, 851968, 0, 196612, 851983, 0, 196610, 851984, 0, 196612, 983039, 0, 196610, 917504, 0, 196612, 917519, 0, 196610, 917520, 0, 196612, 1048575, 0, 196610, 983040, 0, 2, 983041, 0, 131075, 983042, 0, 131075, 983043, 0, 131075, 983044, 0, 131075, 983045, 0, 131075, 983046, 0, 131076, 983049, 0, 131074, 983050, 0, 131075, 983051, 0, 131075, 983052, 0, 131075, 983053, 0, 131075, 983054, 0, 131075, 983055, 0, 262144, 983056, 0, 196612, 1114111, 0, 262146, 1048576, 0, 262147, 1048577, 0, 262147, 1048578, 0, 262147, 1048579, 0, 262147, 1048580, 0, 262147, 1048581, 0, 262147, 1048582, 0, 262148, 1048585, 0, 262146, 1048586, 0, 262147, 1048587, 0, 262147, 1048588, 0, 262147, 1048589, 0, 262147, 1048590, 0, 262147, 1048591, 0, 262147, 1048592, 0, 262148 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 32, 24 )
+
+[node name="LightSource" parent="Player" instance=ExtResource( 3 )]
+position = Vector2( 0, -4 )
+
+[node name="Enemy" parent="." instance=ExtResource( 8 )]
+position = Vector2( 16, 24 )
+_speed = 50
+
+[node name="Enemy2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 152, 24 )
+_speed = 50
+
+[node name="Camera2D" parent="." instance=ExtResource( 5 )]
+_target_node = NodePath("../Player")
+
+[node name="PathFinder" type="Node" parent="."]
+script = SubResource( 5 )
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
