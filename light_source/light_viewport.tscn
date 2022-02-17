@@ -12,9 +12,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Viewport" type="Viewport" parent="." groups=[
-"light_viewport",
-]]
+[node name="Viewport" type="Viewport" parent="." groups=["light_viewport"]]
 size = Vector2( 256, 256 )
 transparent_bg = true
 handle_input_locally = false

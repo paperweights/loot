@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://actors/lighting/light_layers/light_layers.gd" type="Script" id=1]
-[ext_resource path="res://actors/lighting/light_viewport.tscn" type="PackedScene" id=2]
-[ext_resource path="res://actors/lighting/light_shading/shade.tscn" type="PackedScene" id=3]
-[ext_resource path="res://actors/lighting/light_shading/materials/shade1.tres" type="Material" id=4]
-[ext_resource path="res://actors/lighting/light_shading/materials/shade2.tres" type="Material" id=5]
-[ext_resource path="res://actors/lighting/light_shading/materials/shade3.tres" type="Material" id=6]
+[ext_resource path="res://light_source/light_layers/light_layers.gd" type="Script" id=1]
+[ext_resource path="res://light_source/light_viewport.tscn" type="PackedScene" id=2]
+[ext_resource path="res://light_source/light_shading/shade.tscn" type="PackedScene" id=3]
+[ext_resource path="res://light_source/light_shading/materials/shade1.tres" type="Material" id=4]
+[ext_resource path="res://light_source/light_shading/materials/shade2.tres" type="Material" id=5]
+[ext_resource path="res://light_source/light_shading/materials/shade3.tres" type="Material" id=6]
 
 [node name="LightLayers" type="Node2D"]
 visible = false

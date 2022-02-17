@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://actors/lighting/light_shading/materials/shade0.tres" type="Material" id=1]
+[ext_resource path="res://light_source/light_shading/materials/shade0.tres" type="Material" id=1]
 
 [node name="Shade0" type="ViewportContainer"]
 material = ExtResource( 1 )
@@ -12,9 +12,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Viewport" type="Viewport" parent="." groups=[
-"shade_viewport",
-]]
+[node name="Viewport" type="Viewport" parent="." groups=["shade_viewport"]]
 size = Vector2( 256, 256 )
 transparent_bg = true
 handle_input_locally = false
