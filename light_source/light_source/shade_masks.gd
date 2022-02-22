@@ -16,7 +16,7 @@ func _ready() -> void:
 	return
 
 
-func update_masks(layers: PoolRealArray, flicker: float, camera_position: Vector2) -> void:
+func update_masks(layers: PoolIntArray, flicker: float, camera_position: Vector2) -> void:
 	var count = len(_masks)
 	var length = 0
 	for i in range(count):
