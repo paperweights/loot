@@ -7,7 +7,7 @@ var _path: Array
 var _moving: bool
 
 onready var _target: Node2D = get_node('../Player')
-onready var _nav: Navigation2D = get_node('../Navigation2D')
+onready var _nav: Navigation2D = get_node('../../Navigation2D')
 
 
 func _physics_process(_delta):

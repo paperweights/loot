@@ -58,11 +58,6 @@ _global_script_classes=[ {
 "class": "ShadeMasks",
 "language": "GDScript",
 "path": "res://light_source/light_source/shade_masks.gd"
-}, {
-"base": "Node2D",
-"class": "ZIndexer",
-"language": "GDScript",
-"path": "res://nodes/z_indexer.gd"
 } ]
 _global_script_class_icons={
 "Entity": "",
@@ -74,8 +69,7 @@ _global_script_class_icons={
 "Item": "",
 "LightCast": "",
 "LightMesh": "",
-"ShadeMasks": "",
-"ZIndexer": ""
+"ShadeMasks": ""
 }
 
 [application]
