@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://camera/camera2d.gd" type="Script" id=1]
+
+[node name="Camera2D" type="Camera2D" groups=["camera"]]
+current = true
+script = ExtResource( 1 )
+
+[node name="ShakeInterval" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="timeout" from="ShakeInterval" to="." method="_on_ShakeInterval_timeout"]

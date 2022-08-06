@@ -2,9 +2,9 @@ class_name Hearts
 extends GridContainer
 
 const HEARTS = {
-	"Full": preload("res://art/hearts/full.png"),
-	"Half": preload("res://art/hearts/half.png"),
-	"Empty": preload("res://art/hearts/empty.png"),
+	"Full": preload("res://ui/hearts/sprites/full.png"),
+	"Half": preload("res://ui/hearts/sprites/half.png"),
+	"Empty": preload("res://ui/hearts/sprites/empty.png"),
 }
 const HEART_RECT = preload("res://ui/hearts/heart_rect.tscn")
 

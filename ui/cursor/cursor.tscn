@@ -12,6 +12,3 @@ margin_bottom = 15.0
 mouse_filter = 2
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}

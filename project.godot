@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "DungeonRoom",
+"language": "GDScript",
+"path": "res://rooms/room.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Entity",
 "language": "GDScript",
@@ -44,22 +49,28 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://items/item.gd"
 }, {
-"base": "RayCast2D",
+"base": "Reference",
 "class": "LightCast",
 "language": "GDScript",
-"path": "res://light_source/light_source/light_cast.gd"
+"path": "res://lighting/source/light_cast.gd"
 }, {
-"base": "Node2D",
+"base": "Reference",
 "class": "LightMesh",
 "language": "GDScript",
-"path": "res://light_source/light_source/light_mesh.gd"
+"path": "res://lighting/source/light_mesh.gd"
+}, {
+"base": "Resource",
+"class": "RoomPalette",
+"language": "GDScript",
+"path": "res://rooms/palette.gd"
 }, {
 "base": "Node2D",
 "class": "ShadeMasks",
 "language": "GDScript",
-"path": "res://light_source/light_source/shade_masks.gd"
+"path": "res://lighting/source/shade_masks.gd"
 } ]
 _global_script_class_icons={
+"DungeonRoom": "",
 "Entity": "",
 "Equipment": "",
 "FPS": "",
@@ -69,6 +80,7 @@ _global_script_class_icons={
 "Item": "",
 "LightCast": "",
 "LightMesh": "",
+"RoomPalette": "",
 "ShadeMasks": ""
 }
 
@@ -77,7 +89,7 @@ _global_script_class_icons={
 config/name="loot"
 run/main_scene="res://scenes/root.tscn"
 boot_splash/use_filter=false
-config/icon="res://art/icon.png"
+config/icon="res://icon.png"
 
 [display]
 
