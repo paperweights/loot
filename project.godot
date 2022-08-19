@@ -9,11 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node2D",
-"class": "DungeonRoom",
-"language": "GDScript",
-"path": "res://rooms/room.gd"
-}, {
 "base": "KinematicBody2D",
 "class": "Entity",
 "language": "GDScript",
@@ -59,18 +54,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://lighting/source/light_mesh.gd"
 }, {
-"base": "Resource",
-"class": "RoomPalette",
-"language": "GDScript",
-"path": "res://rooms/palette.gd"
-}, {
 "base": "Node2D",
 "class": "ShadeMasks",
 "language": "GDScript",
 "path": "res://lighting/source/shade_masks.gd"
 } ]
 _global_script_class_icons={
-"DungeonRoom": "",
 "Entity": "",
 "Equipment": "",
 "FPS": "",
@@ -80,7 +69,6 @@ _global_script_class_icons={
 "Item": "",
 "LightCast": "",
 "LightMesh": "",
-"RoomPalette": "",
 "ShadeMasks": ""
 }
 

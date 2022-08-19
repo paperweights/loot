@@ -13,9 +13,6 @@
 material = ExtResource( 2 )
 margin_right = 128.0
 margin_bottom = 128.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 128, 128 )
