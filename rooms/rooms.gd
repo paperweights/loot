@@ -6,7 +6,6 @@ extends Node2D
 enum Connection {
 	Nothing = -1, # no wall or connection
 	Solid, # solid wall
-	Exit, # dungeon exit
 	Pass, # passage
 }
 
@@ -18,22 +17,34 @@ const BORDERS = [
 	{
 		'scene': preload("res://rooms/borders/horizontal.tscn"),
 		'offset': Vector2(),
-		'connections': {
-			'solid': preload("res://rooms/borders/solid.tscn"),
-			'passage': preload("res://rooms/borders/passage.tscn"),
-		}
+		'connections': [
+			preload("res://rooms/borders/solid.tscn"),
+			preload("res://rooms/borders/passage.tscn"),
+		]
 	},
 	{
 		'scene': preload("res://rooms/borders/vertical.tscn"),
 		'offset': Vector2(),
+		'connections': [
+			preload("res://rooms/borders/solid_v.tscn"),
+			preload("res://rooms/borders/passage_v.tscn"),
+		]
 	},
 	{
 		'scene': preload("res://rooms/borders/horizontal.tscn"),
 		'offset': Vector2(0, 16),
+		'connections': [
+			preload("res://rooms/borders/solid.tscn"),
+			preload("res://rooms/borders/passage.tscn"),
+		]
 	},
 	{
 		'scene': preload("res://rooms/borders/vertical.tscn"),
 		'offset': Vector2(16,0),
+		'connections': [
+			preload("res://rooms/borders/solid_v.tscn"),
+			preload("res://rooms/borders/passage_v.tscn"),
+		]
 	},
 ]
 const OFFSETS = [Vector2.UP, Vector2.LEFT, Vector2.DOWN, Vector2.RIGHT]
@@ -41,7 +52,7 @@ const STARTING_ROOM = {
 	'scene': preload("res://rooms/prefabs/starting_room.tscn"),
 	'cells': {
 		Vector2(): [Connection.Pass, Connection.Pass, Connection.Pass,
-		Connection.Pass],
+					Connection.Pass]
 	}
 }
 const PALETTE = [
@@ -49,7 +60,7 @@ const PALETTE = [
 		'scene': preload("res://rooms/prefabs/template.tscn"),
 		'cells': {
 			Vector2(): [Connection.Pass, Connection.Pass, Connection.Pass,
-			Connection.Pass],
+						Connection.Pass]
 		},
 	},
 ]
@@ -85,27 +96,58 @@ func _generate_layout(rng: RandomNumberGenerator) -> Dictionary:
 	# build each vein
 	for vein in _veins:
 		var palette: Array = vein['palette']
+		var connections = _shuffle(_get_connections(rooms), rng)
 		# build a specified number of rooms
-		for r in range(vein['length']):
+		for _r in range(vein['length']):
 			var room_order = _shuffle(range(len(palette)), rng)
-			# pick a room prefab to build
-			for p in room_order:
-				var room = palette[p]
-				# figure out where to place the room
+			var location = _generate_room(rooms, palette, room_order, connections)
+			if location:
+				connections = _shuffle(_get_connections({location: rooms[location]}), rng)
 	return rooms
 
 
+func _generate_room(rooms: Dictionary, palette: Array, room_order: Array, connections: Array):
+	for r in room_order:
+		var room = palette[r]
+		for c in connections:
+			var new_loc = c[0] + OFFSETS[c[1]]
+			if _is_occupied(rooms, new_loc):
+				continue
+			rooms[new_loc] = room
+			return new_loc
+	return null
+
+
+func _get_connections(rooms: Dictionary) -> Array:
+	var connections = []
+	for location in rooms:
+		var cells = rooms[location]['cells']
+		for offset in cells:
+			var new_loc = location + offset
+			var cons = cells[offset]
+			for c in range(4):
+				# only consider open passages
+				if cons[c] != Connection.Pass or \
+						_is_occupied(rooms, new_loc + OFFSETS[c]):
+					continue
+				connections.append([new_loc, c])
+	return connections
+
+
+func _is_occupied(rooms: Dictionary, location: Vector2) -> bool:
+	for r in rooms:
+		var room = rooms[r]
+		for c in room['cells']:
+			if location == r + c:
+				return true
+	return false
+
+
 func _place_rooms(rooms: Dictionary) -> void:
-	for location in rooms.keys():
+	for location in rooms:
 		var room = rooms[location]
 		_spawn_room(room['scene'], location)
-		_spawn_borders(room['cells'], location)
-	return
-
-
-func _add_available(from: Dictionary, to: Dictionary) -> void:
-	for key in from:
-		to[key] = from[key]
+		_spawn_borders(rooms, room['cells'], location)
 	return
 
 
@@ -115,9 +157,10 @@ func _spawn_room(room: PackedScene, location: Vector2) -> void:
 	return
 
 
-func _spawn_borders(cells: Dictionary, location: Vector2) -> void:
+func _spawn_borders(rooms: Dictionary, cells: Dictionary, location: Vector2) -> void:
 	var offset = location * ROOM_SIZE
 	for cell in cells.keys():
+		print(cell)
 		var connections = cells[cell]
 		for c in range(4):
 			var connection = connections[c]
@@ -126,16 +169,10 @@ func _spawn_borders(cells: Dictionary, location: Vector2) -> void:
 			var border = BORDERS[c]
 			var border_offset = offset + border['offset']
 			_blit_tilemaps(border['scene'].instance(), border_offset)
-			if c > 0:
-				continue
-			var passage: PackedScene = null
-			match connection:
-				Connection.Solid:
-					passage = border['connections']['solid']
-				Connection.Pass:
-					passage = border['connections']['passage']
-			if passage:
-				_blit_tilemaps(passage.instance(), border_offset)
+			# close of connections
+			if not _is_occupied(rooms, location + cell + OFFSETS[c]):
+				connection = Connection.Solid
+			_blit_tilemaps(border['connections'][connection].instance(), border_offset)
 	return
 
 
@@ -171,3 +208,9 @@ func _shuffle(array: Array, rng: RandomNumberGenerator) -> Array:
 		copy[i] = copy[j]
 		copy[j] = value
 	return copy
+
+
+func _add_available(from: Dictionary, to: Dictionary) -> void:
+	for key in from:
+		to[key] = from[key]
+	return
