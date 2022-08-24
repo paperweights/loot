@@ -67,16 +67,23 @@ export(Array, Dictionary) var _veins = [
 onready var _tilemaps = [$Floor, $Walls, $Tops]
 
 
+var _rng: RandomNumberGenerator
+
+
+func _init():
+	_rng = RandomNumberGenerator.new()
+	_rng.randomize()
+	return
+
+
 func _ready():
-	var rng = RandomNumberGenerator.new()
-	rng.randomize()
-	var rooms = _generate_layout(rng)
+	var rooms = _generate_layout()
 	_place_rooms(rooms)
 	_update_tilemaps()
 	return
 
 
-func _generate_layout(rng: RandomNumberGenerator) -> Dictionary:
+func _generate_layout() -> Dictionary:
 	"""
 	generate the dungeon layout by keeping track of the rooms to spawn and the
 	location to spawn them at. This will be followed up by a seperate function
@@ -88,13 +95,16 @@ func _generate_layout(rng: RandomNumberGenerator) -> Dictionary:
 	# build each vein
 	for vein in _veins:
 		var palette: Array = vein['palette']
-		var connections = _shuffle(_get_connections(rooms), rng)
+		var connections = _shuffle(_get_connections(rooms))
 		# build a specified number of rooms
 		for _r in range(vein['length']):
-			var room_order = _shuffle(range(len(palette)), rng)
+			var room_order = _shuffle(range(len(palette)))
 			var location = _generate_room(rooms, palette, room_order, connections)
+			# if location isn't void, generation succeeded
 			if location:
-				connections = _shuffle(_get_connections({location: rooms[location]}), rng)
+				# the next room in the vein branches off the current one
+				var temp_rooms = {location: rooms[location]}
+				connections = _shuffle(_get_connections(temp_rooms))
 	return rooms
 
 
@@ -196,14 +206,14 @@ func _update_tilemaps() -> void:
 	return
 
 
-func _shuffle(array: Array, rng: RandomNumberGenerator) -> Array:
+func _shuffle(array: Array) -> Array:
 	"""
 	Fisher-Yates shuffle
 	https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Modern_method
 	"""
 	var copy = array.duplicate()
 	for i in range(len(array) - 1, 0, -1):
-		var j = rng.randi_range(0, i)
+		var j = _rng.randi_range(0, i)
 		var value = copy[i]
 		copy[i] = copy[j]
 		copy[j] = value
