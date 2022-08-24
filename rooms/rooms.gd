@@ -49,17 +49,26 @@ const STARTING_ROOM = {
 	}
 }
 const PALETTE = [
+#	{
+#		'scene': preload("res://rooms/prefabs/template.tscn"),
+#		'cells': {
+#			Vector2(): 0b1111,
+#		},
+#	},
 	{
-		'scene': preload("res://rooms/prefabs/template.tscn"),
+		'scene': preload("res://rooms/prefabs/2x2/test.tscn"),
 		'cells': {
-			Vector2(): 0b1111,
+			Vector2(): 0b1100,
+			Vector2(1, 0): 0b1001,
+			Vector2(0, 1): 0b0110,
+			Vector2(1, 1): 0b0011,
 		},
 	},
 ]
 
 export(Array, Dictionary) var _veins = [
 	{
-		'length': 3,
+		'length': 1,
 		'palette': PALETTE,
 	},
 ]
@@ -113,7 +122,12 @@ func _generate_room(rooms: Dictionary, palette: Array, room_order: Array, connec
 		var room = palette[r]
 		for c in connections:
 			var new_loc = c[0] + OFFSETS[c[1]]
-			if _is_occupied(rooms, new_loc):
+			var occupied = false
+			for cell in room['cells']:
+				if _is_occupied(rooms, new_loc + cell):
+					occupied = true
+					break
+			if occupied:
 				continue
 			rooms[new_loc] = room
 			return new_loc
@@ -125,6 +139,8 @@ func _get_connections(rooms: Dictionary) -> Array:
 	returns an Array of open connections where a connections is:
 	[location: Vector2, direction: int]
 	"""
+	# TODO: flip result so you can easily get connections for a certain
+	# direction
 	var connections = []
 	for location in rooms:
 		var cells = rooms[location]['cells']
@@ -164,16 +180,17 @@ func _spawn_room(room: PackedScene, location: Vector2) -> void:
 
 
 func _spawn_borders(rooms: Dictionary, cells: Dictionary, location: Vector2) -> void:
-	var offset = location * ROOM_SIZE
+	var location_offset = location * ROOM_SIZE
 	for cell in cells.keys():
+		var cell_offset = cell * ROOM_SIZE
 		var connections = cells[cell]
 		for c in range(4):
 			var connection = _get_connection(connections, c)
+			# don't create borders with other cells from the same room
 			if cell + OFFSETS[c] in cells:
-				print('neighbour')
 				continue
 			var border = BORDERS[c]
-			var border_offset = offset + border['offset']
+			var border_offset = location_offset + cell_offset + border['offset']
 			_blit_tilemaps(border['scene'].instance(), border_offset)
 			# close of connections
 			if not _is_occupied(rooms, location + cell + OFFSETS[c]):
