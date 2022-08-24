@@ -3,12 +3,6 @@ Room Generator
 """
 extends Node2D
 
-enum Connection {
-	Nothing = -1, # no wall or connection
-	Solid, # solid wall
-	Pass, # passage
-}
-
 const CELL_SIZE = Vector2(8, 8)
 const ROOM_SIZE = Vector2(16, 16)
 const TILEMAPS = ["Floors", "Walls", "Tops"]
@@ -51,16 +45,14 @@ const OFFSETS = [Vector2.UP, Vector2.LEFT, Vector2.DOWN, Vector2.RIGHT]
 const STARTING_ROOM = {
 	'scene': preload("res://rooms/prefabs/starting_room.tscn"),
 	'cells': {
-		Vector2(): [Connection.Pass, Connection.Pass, Connection.Pass,
-					Connection.Pass]
+		Vector2(): 0b1111,
 	}
 }
 const PALETTE = [
 	{
 		'scene': preload("res://rooms/prefabs/template.tscn"),
 		'cells': {
-			Vector2(): [Connection.Pass, Connection.Pass, Connection.Pass,
-						Connection.Pass]
+			Vector2(): 0b1111,
 		},
 	},
 ]
@@ -119,16 +111,20 @@ func _generate_room(rooms: Dictionary, palette: Array, room_order: Array, connec
 
 
 func _get_connections(rooms: Dictionary) -> Array:
+	"""
+	returns an Array of open connections where a connections is:
+	[location: Vector2, direction: int]
+	"""
 	var connections = []
 	for location in rooms:
 		var cells = rooms[location]['cells']
-		for offset in cells:
-			var new_loc = location + offset
-			var cons = cells[offset]
+		for cell in cells:
+			var new_loc = location + cell
+			var cons = cells[cell]
 			for c in range(4):
-				# only consider open passages
-				if cons[c] != Connection.Pass or \
-						_is_occupied(rooms, new_loc + OFFSETS[c]):
+				if not _get_connection(cons, c):
+					continue
+				if _is_occupied(rooms, new_loc + OFFSETS[c]):
 					continue
 				connections.append([new_loc, c])
 	return connections
@@ -160,20 +156,24 @@ func _spawn_room(room: PackedScene, location: Vector2) -> void:
 func _spawn_borders(rooms: Dictionary, cells: Dictionary, location: Vector2) -> void:
 	var offset = location * ROOM_SIZE
 	for cell in cells.keys():
-		print(cell)
 		var connections = cells[cell]
 		for c in range(4):
-			var connection = connections[c]
-			if connection == Connection.Nothing:
+			var connection = _get_connection(connections, c)
+			if cell + OFFSETS[c] in cells:
+				print('neighbour')
 				continue
 			var border = BORDERS[c]
 			var border_offset = offset + border['offset']
 			_blit_tilemaps(border['scene'].instance(), border_offset)
 			# close of connections
 			if not _is_occupied(rooms, location + cell + OFFSETS[c]):
-				connection = Connection.Solid
-			_blit_tilemaps(border['connections'][connection].instance(), border_offset)
+				connection = false
+			_blit_tilemaps(border['connections'][int(connection)].instance(), border_offset)
 	return
+
+
+func _get_connection(connections: int, c: int) -> bool:
+	return connections & 1 << c != 0
 
 
 func _blit_tilemap(src: TileMap, dst: TileMap, offset: Vector2) -> void:
