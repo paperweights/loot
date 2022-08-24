@@ -3,6 +3,14 @@ Room Generator
 """
 extends Node2D
 
+enum Connection {
+	Up = 1,
+	Left = 2,
+	Down = 4,
+	Right = 8,
+	All = 15,
+}
+
 const CELL_SIZE = Vector2(8, 8)
 const ROOM_SIZE = Vector2(16, 16)
 const TILEMAPS = ["Floors", "Walls", "Tops"]
@@ -41,27 +49,28 @@ const BORDERS = [
 		]
 	},
 ]
+# NOTE: cells bitmask is in reverse order of OFFSETS
 const OFFSETS = [Vector2.UP, Vector2.LEFT, Vector2.DOWN, Vector2.RIGHT]
 const STARTING_ROOM = {
 	'scene': preload("res://rooms/prefabs/starting_room.tscn"),
 	'cells': {
-		Vector2(): 0b1111,
+		Vector2(): Connection.All,
 	}
 }
 const PALETTE = [
-#	{
-#		'scene': preload("res://rooms/prefabs/template.tscn"),
-#		'cells': {
-#			Vector2(): 0b1111,
-#		},
-#	},
+	{
+		'scene': preload("res://rooms/prefabs/template.tscn"),
+		'cells': {
+			Vector2(): Connection.All,
+		},
+	},
 	{
 		'scene': preload("res://rooms/prefabs/2x2/test.tscn"),
 		'cells': {
-			Vector2(): 0b1100,
-			Vector2(1, 0): 0b1001,
-			Vector2(0, 1): 0b0110,
-			Vector2(1, 1): 0b0011,
+			Vector2(): Connection.Up | Connection.Left,
+			Vector2(1, 0): Connection.Up | Connection.Right,
+			Vector2(0, 1): Connection.Left | Connection.Down,
+			Vector2(1, 1): Connection.Down | Connection.Right,
 		},
 	},
 ]
@@ -180,6 +189,7 @@ func _spawn_room(room: PackedScene, location: Vector2) -> void:
 
 
 func _spawn_borders(rooms: Dictionary, cells: Dictionary, location: Vector2) -> void:
+	# TODO: borders shared by two rooms are drawn twice
 	var location_offset = location * ROOM_SIZE
 	for cell in cells.keys():
 		var cell_offset = cell * ROOM_SIZE
@@ -189,6 +199,8 @@ func _spawn_borders(rooms: Dictionary, cells: Dictionary, location: Vector2) -> 
 			# don't create borders with other cells from the same room
 			if cell + OFFSETS[c] in cells:
 				continue
+			if connection == false:
+				print(location, ' ', cell, ' ', connections)
 			var border = BORDERS[c]
 			var border_offset = location_offset + cell_offset + border['offset']
 			_blit_tilemaps(border['scene'].instance(), border_offset)
@@ -218,6 +230,7 @@ func _blit_tilemaps(room: Node2D, offset: Vector2) -> void:
 
 
 func _update_tilemaps() -> void:
+	# TODO: randomise floor tiles
 	for tilemap in _tilemaps:
 		tilemap.update_bitmask_region()
 	return
