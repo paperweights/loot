@@ -77,7 +77,7 @@ const PALETTE = [
 
 export(Array, Dictionary) var _veins = [
 	{
-		'length': 1,
+		'length': 3,
 		'palette': PALETTE,
 	},
 ]
@@ -104,65 +104,84 @@ func _ready():
 func _generate_layout() -> Dictionary:
 	"""
 	generate the dungeon layout by keeping track of the rooms to spawn and the
-	location to spawn them at. This will be followed up by a seperate function
+	location to spawn them at. This will be followed up by a separate function
 	that just draws the rooms and the connections to the tilemaps.
 	"""
+	# TODO: keep track of connections
 	var rooms = {}
 	# spawn the starting room
 	rooms[Vector2()] = STARTING_ROOM
-	# build each vein
-	for vein in _veins:
+	for vein in _veins: # build each vein
 		var palette: Array = vein['palette']
-		var connections = _shuffle(_get_connections(rooms))
+		var branch_rooms = _shuffle(rooms.keys())
 		# build a specified number of rooms
 		for _r in range(vein['length']):
-			var room_order = _shuffle(range(len(palette)))
-			var location = _generate_room(rooms, palette, room_order, connections)
-			# if location isn't void, generation succeeded
-			if location:
-				# the next room in the vein branches off the current one
-				var temp_rooms = {location: rooms[location]}
-				connections = _shuffle(_get_connections(temp_rooms))
+			var new_room_location = _generate_room(rooms, palette, branch_rooms)
+			if new_room_location:
+				branch_rooms = [new_room_location]
 	return rooms
 
 
-func _generate_room(rooms: Dictionary, palette: Array, room_order: Array, connections: Array):
-	for r in room_order:
-		var room = palette[r]
-		for c in connections:
-			var new_loc = c[0] + OFFSETS[c[1]]
-			var occupied = false
-			for cell in room['cells']:
-				if _is_occupied(rooms, new_loc + cell):
-					occupied = true
-					break
-			if occupied:
+func _generate_room(rooms, palette, branch_rooms):
+	# pick a room to branch out off
+	for branch_room_location in branch_rooms:
+		# get list connections to branch out of
+		var connections = _get_connections(rooms[branch_room_location]['cells'])
+		_remove_occupied_connections(rooms, branch_room_location, connections)
+		connections = _shuffle(connections)
+		for connection in connections:
+			# try to find a room that can connect
+			var room_order = _shuffle(palette)
+			for room in room_order:
+				var room_connections = _get_connections(room['cells'])
+				_remove_directional_connections(room_connections, connection[1])
+				room_connections = _shuffle(room_connections)
+				for room_connection in room_connections:
+					var new_room_location = branch_room_location + connection[0] + OFFSETS[connection[1]] - room_connection[0]
+					# TODO: make sure that the chosen location isn't occupied
+					var valid: bool = true
+					for new_room_cell in room['cells']:
+						if _is_occupied(rooms, new_room_location + new_room_cell):
+							valid = false
+							break
+					if not valid:
+						continue
+					rooms[new_room_location] = room
+					return new_room_location
+	return
+
+
+func _get_connections(cells: Dictionary) -> Array:
+	"""
+	get all open connections of a room
+	"""
+	var open_connections = []
+	for cell in cells:
+		var cons = cells[cell]
+		for c in range(4):
+			# skip closed connections
+			if not _get_connection(cons, c):
 				continue
-			rooms[new_loc] = room
-			return new_loc
-	return null
+			open_connections.push_back([cell, c])
+	return open_connections
 
 
-func _get_connections(rooms: Dictionary) -> Array:
-	"""
-	returns an Array of open connections where a connections is:
-	[location: Vector2, direction: int]
-	"""
-	# TODO: flip result so you can easily get connections for a certain
-	# direction
-	var connections = []
-	for location in rooms:
-		var cells = rooms[location]['cells']
-		for cell in cells:
-			var new_loc = location + cell
-			var cons = cells[cell]
-			for c in range(4):
-				if not _get_connection(cons, c):
-					continue
-				if _is_occupied(rooms, new_loc + OFFSETS[c]):
-					continue
-				connections.append([new_loc, c])
-	return connections
+func _remove_occupied_connections(rooms: Dictionary, location: Vector2,
+connections: Array) -> void:
+	for c in range(len(connections) - 1, 0, -1):
+		var conn = connections[c]
+		if _is_occupied(rooms, location + conn[0] + OFFSETS[conn[1]]):
+			connections.pop_at(c)
+	return
+
+
+func _remove_directional_connections(connections: Array, direction: int) -> void:
+	direction = (direction + 2) % 4
+	for c in range(len(connections) - 1, -1, -1):
+		var conn = connections[c]
+		if conn[1] != direction:
+			connections.pop_at(c)
+	return
 
 
 func _is_occupied(rooms: Dictionary, location: Vector2) -> bool:
@@ -199,8 +218,8 @@ func _spawn_borders(rooms: Dictionary, cells: Dictionary, location: Vector2) -> 
 			# don't create borders with other cells from the same room
 			if cell + OFFSETS[c] in cells:
 				continue
-			if connection == false:
-				print(location, ' ', cell, ' ', connections)
+#			if connection == false: # DEBUG
+#				print(location, ' ', cell, ' ', connections)
 			var border = BORDERS[c]
 			var border_offset = location_offset + cell_offset + border['offset']
 			_blit_tilemaps(border['scene'].instance(), border_offset)
@@ -238,11 +257,15 @@ func _update_tilemaps() -> void:
 
 func _shuffle(array: Array) -> Array:
 	"""
+	Shuffle using a random number generator
 	Fisher-Yates shuffle
 	https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Modern_method
 	"""
 	var copy = array.duplicate()
-	for i in range(len(array) - 1, 0, -1):
+	# skip shuffling if not enough elements
+	if len(copy) < 2:
+		return copy
+	for i in range(len(copy) - 1, 0, -1):
 		var j = _rng.randi_range(0, i)
 		var value = copy[i]
 		copy[i] = copy[j]
