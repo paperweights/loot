@@ -122,7 +122,7 @@ func _generate_layout() -> Dictionary:
 	return rooms
 
 
-func _generate_room(rooms, palette, branch_rooms):
+func _generate_room(rooms: Dictionary, palette: Array, branch_rooms: Array):
 	# pick a room to branch out off
 	for branch_room_location in branch_rooms:
 		# get list connections to branch out of
@@ -138,7 +138,6 @@ func _generate_room(rooms, palette, branch_rooms):
 				room_connections = _shuffle(room_connections)
 				for room_connection in room_connections:
 					var new_room_location = branch_room_location + connection[0] + OFFSETS[connection[1]] - room_connection[0]
-					# TODO: make sure that the chosen location isn't occupied
 					var valid: bool = true
 					for new_room_cell in room['cells']:
 						if _is_occupied(rooms, new_room_location + new_room_cell):
@@ -231,6 +230,9 @@ func _spawn_borders(rooms: Dictionary, cells: Dictionary, location: Vector2) -> 
 
 
 func _get_connection(connections: int, c: int) -> bool:
+	"""
+	check if a connection is open in a certain diretion
+	"""
 	return connections & 1 << c != 0
 
 
@@ -271,9 +273,3 @@ func _shuffle(array: Array) -> Array:
 		copy[i] = copy[j]
 		copy[j] = value
 	return copy
-
-
-func _add_available(from: Dictionary, to: Dictionary) -> void:
-	for key in from:
-		to[key] = from[key]
-	return
